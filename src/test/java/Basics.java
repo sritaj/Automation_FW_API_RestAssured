@@ -1,5 +1,6 @@
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
+import org.testng.Assert;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
@@ -26,7 +27,6 @@ public class Basics {
                 "}\n";
 
         //Validation of Add Place API
-
         RestAssured.baseURI = "https://rahulshettyacademy.com";
         String response = given().queryParam("key", "qaclick123")
                 .header("Content-Type", "application/json")
@@ -42,9 +42,29 @@ public class Basics {
         String placeID = jsonpath.get("place_id");
         System.out.println(placeID);
 
+        //Validation of Updated Place API -> Get the place ID to update the address and validate it in the Response
+        String updatedAddress = "At Ramji Pada, Near Sankirtan Mandap";
+        String updatedBody = "{\"place_id\" :\""+ placeID + "\", \"address\": \""+ updatedAddress + "\", \"key\" : \"qaclick123\" }";
 
+        given().log().all().queryParam("key", "qaclick123")
+                .header("Content-Type", "application/json")
+                .body(updatedBody)
+                .when().put("/maps/api/place/update/json")
+                .then().assertThat().log().all().statusCode(200);
 
-        //Validation of Add Place -> Get the place ID to update the address and validate it in the Response
+        //Validation of Get Place API -> Get the updated address and validate it in the Response
+        String getUpdatedAddress = given().log().all().queryParam("key", "qaclick123")
+                .queryParam("place_id", placeID)
+                .when().get("/maps/api/place/get/json")
+                .then().assertThat().statusCode(200)
+                .extract().response().asString();
+
+        JsonPath jpath = new JsonPath(getUpdatedAddress);
+        String newAddress = jpath.get("address");
+        System.out.println(newAddress);
+
+        Assert.assertEquals(newAddress, updatedAddress);
+
     }
 
 }
