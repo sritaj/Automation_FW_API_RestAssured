@@ -24,16 +24,18 @@ public class Basics {
                 "  \"language\": \"French-IN\"\n" +
                 "}\n";
 
-        //Validation of Add Place
+        //Validation of Add Place API
 
         RestAssured.baseURI = "https://rahulshettyacademy.com";
-        given().queryParam("key", "qaclick123")
+        String response = given().queryParam("key", "qaclick123")
                 .header("Content-Type", "application/json")
                 .log().all()
                 .body(place)
                 .when().post("/maps/api/place/add/json")
-                .then().log().all().assertThat().statusCode(200).body("scope", equalTo("APP"))
-                .header("Server", "Apache/2.4.41 (Ubuntu)");
+                .then().assertThat().statusCode(200).body("scope", equalTo("APP"))
+                .header("Server", "Apache/2.4.41 (Ubuntu)").extract().response().asString();
+
+        System.out.println(response);
 
         //Validation of Add Place -> Get the place ID to update the address and validate it in the Response
     }
