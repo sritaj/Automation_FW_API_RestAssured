@@ -1,6 +1,6 @@
 import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
 import org.testng.Assert;
+import reusableMethods.JsonPathImpl;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
@@ -38,13 +38,14 @@ public class Basics {
 
         System.out.println(response);
 
-        JsonPath jsonpath = new JsonPath(response);
-        String placeID = jsonpath.get("place_id");
+//        JsonPath jsonpath = ResponseExtraction.rawToJSON(response);
+//        String placeID = jsonpath.get("place_id");
+        String placeID = JsonPathImpl.extractValueFromResponse(response, "place_id");
         System.out.println(placeID);
 
         //Validation of Updated Place API -> Get the place ID to update the address and validate it in the Response
         String updatedAddress = "At Ramji Pada, Near Sankirtan Mandap";
-        String updatedBody = "{\"place_id\" :\""+ placeID + "\", \"address\": \""+ updatedAddress + "\", \"key\" : \"qaclick123\" }";
+        String updatedBody = "{\"place_id\" :\"" + placeID + "\", \"address\": \"" + updatedAddress + "\", \"key\" : \"qaclick123\" }";
 
         given().log().all().queryParam("key", "qaclick123")
                 .header("Content-Type", "application/json")
@@ -59,8 +60,9 @@ public class Basics {
                 .then().assertThat().statusCode(200)
                 .extract().response().asString();
 
-        JsonPath jpath = new JsonPath(getUpdatedAddress);
-        String newAddress = jpath.get("address");
+//        JsonPath jpath = ResponseExtraction.rawToJSON(getUpdatedAddress);;
+//        String newAddress = jpath.get("address");
+        String newAddress = JsonPathImpl.extractValueFromResponse(getUpdatedAddress, "address");
         System.out.println(newAddress);
 
         Assert.assertEquals(newAddress, updatedAddress);
