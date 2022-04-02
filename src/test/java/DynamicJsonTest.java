@@ -5,6 +5,10 @@ import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import reusableMethods.JsonPathImpl;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import static io.restassured.RestAssured.given;
 
 public class DynamicJsonTest {
@@ -57,6 +61,7 @@ public class DynamicJsonTest {
     }
 
     @Test(testName = "Validate Adding of New Book using TestNG Data Provider", dataProvider = "booksData")
+    @Ignore
     public void addBookUseCase2(String bookName, String isbn, String aisle, String authorName){
         RestAssured.baseURI = "http://216.10.245.166";
         String response = given().log().all().header("Content-Type", "application/json")
@@ -65,6 +70,17 @@ public class DynamicJsonTest {
 
         String bookid = JsonPathImpl.extractValueFromResponse(response, "ID");
         System.out.println(bookid);
+
+    }
+
+    String path = System.getProperty("user.dir") + "/src/test/resources/librarybook.json";
+    @Test(testName = "Validate Adding of New Book via reading from JSON file")
+    public void addBookUseCase3() throws IOException {
+        RestAssured.baseURI = "http://216.10.245.166";
+        given().log().all().header("Content-Type", "application/json")
+                .body(new String(Files.readAllBytes(Paths.get(path))))
+                .when().post("Library/Addbook.php")
+                .then().assertThat().statusCode(200);
 
     }
 }
