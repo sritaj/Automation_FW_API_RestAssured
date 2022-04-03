@@ -21,26 +21,26 @@ public class DynamicJsonTest {
 
     String book = "{\n" +
             "\n" +
-            "\"name\":\""+bookName+"\",\n" +
-            "\"isbn\":\""+isbn+"\",\n" +
-            "\"aisle\":\""+aisle+"\",\n" +
-            "\"author\":\""+authorName+"\"\n" +
+            "\"name\":\"" + bookName + "\",\n" +
+            "\"isbn\":\"" + isbn + "\",\n" +
+            "\"aisle\":\"" + aisle + "\",\n" +
+            "\"author\":\"" + authorName + "\"\n" +
             "}\n";
 
 
-    public static String getBookData(String bookName, String isbn, String aisle, String authorName){
+    public static String getBookData(String bookName, String isbn, String aisle, String authorName) {
 
         return "{\n" +
                 "\n" +
-                "\"name\":\""+bookName+"\",\n" +
-                "\"isbn\":\""+isbn+"\",\n" +
-                "\"aisle\":\""+aisle+"\",\n" +
-                "\"author\":\""+authorName+"\"\n" +
+                "\"name\":\"" + bookName + "\",\n" +
+                "\"isbn\":\"" + isbn + "\",\n" +
+                "\"aisle\":\"" + aisle + "\",\n" +
+                "\"author\":\"" + authorName + "\"\n" +
                 "}\n";
     }
 
     @DataProvider(name = "booksData")
-    public Object[][] getData(){
+    public Object[][] getData() {
         return new Object[][]{
                 {faker.address().streetAddressNumber(), faker.address().countryCode(), faker.book().title(), faker.book().author()},
                 {faker.address().streetAddressNumber(), faker.address().countryCode(), faker.book().title(), faker.book().author()},
@@ -49,7 +49,7 @@ public class DynamicJsonTest {
 
     @Test(testName = "Validate Adding of New Book")
     @Ignore
-    public void addBookUseCase1(){
+    public void addBookUseCase1() {
         RestAssured.baseURI = "http://216.10.245.166";
         String response = given().log().all().header("Content-Type", "application/json")
                 .body(book).when().post("Library/Addbook.php")
@@ -62,7 +62,7 @@ public class DynamicJsonTest {
 
     @Test(testName = "Validate Adding of New Book using TestNG Data Provider", dataProvider = "booksData")
     @Ignore
-    public void addBookUseCase2(String bookName, String isbn, String aisle, String authorName){
+    public void addBookUseCase2(String bookName, String isbn, String aisle, String authorName) {
         RestAssured.baseURI = "http://216.10.245.166";
         String response = given().log().all().header("Content-Type", "application/json")
                 .body(getBookData(bookName, isbn, aisle, authorName)).when().post("Library/Addbook.php")
@@ -74,6 +74,7 @@ public class DynamicJsonTest {
     }
 
     String path = System.getProperty("user.dir") + "/src/test/resources/librarybook.json";
+
     @Test(testName = "Validate Adding of New Book via reading from JSON file")
     public void addBookUseCase3() throws IOException {
         RestAssured.baseURI = "http://216.10.245.166";

@@ -17,8 +17,8 @@ public class JIRACreateTicketTest {
             "   { \n" +
             "      \"key\": \"API\"\n" +
             "   },\n" +
-            "   \"summary\": \""+title+"\",\n" +
-            "   \"description\": \""+desc+"\",\n" +
+            "   \"summary\": \"" + title + "\",\n" +
+            "   \"description\": \"" + desc + "\",\n" +
             "   \"issuetype\": {\n" +
             "      \"name\": \"Bug\"\n" +
             "   }\n" +
@@ -27,7 +27,7 @@ public class JIRACreateTicketTest {
 
     //ToDo - Below code only for reference, working as expected from POSTMAN but not while using RestAssured
     @Test(testName = "Validate creating JIRA Ticket")
-    public void createJIRATicket(){
+    public void createJIRATicket() {
 
         RestAssured.baseURI = "http://localhost:8080";
         given().cookie("mytoken", "MzMxMzMyNjc4OTgzOq57uCh7PgHhw4Q8I+HrGk43fxU5")
@@ -40,7 +40,7 @@ public class JIRACreateTicketTest {
 
     //ToDo - Below code only for reference, working as expected from POSTMAN but not while using RestAssured
     @Test(testName = "Validate getting the specified JIRA Ticket")
-    public void getJIRATicket(){
+    public void getJIRATicket() {
 
         Cookie myCookie = new Cookie.Builder("JSESSIONID", "56C8CC8B0BA7A263CA074A8CBAC3384D")
                 .setSecured(true)

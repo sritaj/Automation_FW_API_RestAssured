@@ -12,7 +12,7 @@ public class JIRAGetSessionCookieTest {
 
     //ToDo - Below code only for reference, working as expected from POSTMAN but not while using RestAssured
     @Test(testName = "Validate getting Session Cookie from JIRA")
-    public void getJIRASessionCookie(){
+    public void getJIRASessionCookie() {
 
         SessionFilter sess = new SessionFilter();
 

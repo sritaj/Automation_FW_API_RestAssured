@@ -71,17 +71,17 @@ public class ComplexJsonParseTest {
         System.out.println(courses);
 
         //Print all the courses with their respective prices
-        for(int i = 0; i<count; i++){
-            String courseTitle = js.get("courses["+i+"].title");
-            int price = js.getInt("courses["+i+"].price");
+        for (int i = 0; i < count; i++) {
+            String courseTitle = js.get("courses[" + i + "].title");
+            int price = js.getInt("courses[" + i + "].price");
             System.out.println(courseTitle + " : " + price);
         }
 
         //Print the copies sold for the course "RPA"
-        for (int i = 0; i<count; i++){
-            String courseTitle = js.get("courses["+i+"].title");
-            if(courseTitle.equalsIgnoreCase("RPA")){
-                int copies = js.get("courses["+i+"].copies");
+        for (int i = 0; i < count; i++) {
+            String courseTitle = js.get("courses[" + i + "].title");
+            if (courseTitle.equalsIgnoreCase("RPA")) {
+                int copies = js.get("courses[" + i + "].copies");
                 System.out.println(copies);
                 break;
             }
@@ -89,11 +89,11 @@ public class ComplexJsonParseTest {
 
         //Verify if purchase Amount total matches with price * copies for all courses
         int total = 0;
-        for(int i = 0; i<count; i++){
-            int price = js.get("courses["+i+"].price");
-            int copies = js.get("courses["+i+"].copies");
+        for (int i = 0; i < count; i++) {
+            int price = js.get("courses[" + i + "].price");
+            int copies = js.get("courses[" + i + "].copies");
             int subTotal = price * copies;
-            total = total+subTotal;
+            total = total + subTotal;
         }
         System.out.println(total);
 
