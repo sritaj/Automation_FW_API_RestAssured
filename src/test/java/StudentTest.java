@@ -20,7 +20,6 @@ public class StudentTest {
     docker pull tejasn1/student-app
     docker run -p 8085:8080 -d tejasn1/student-app
      */
-    
     @BeforeTest
     public void init() {
         RestAssured.baseURI = "http://localhost";
