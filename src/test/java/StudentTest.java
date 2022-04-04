@@ -15,6 +15,12 @@ import static io.restassured.RestAssured.given;
 
 public class StudentTest {
 
+    /*
+    Command to Run the Docker Setup for testing below APIS
+    docker pull tejasn1/student-app
+    docker run -p 8085:8080 -d tejasn1/student-app
+     */
+    
     @BeforeTest
     public void init() {
         RestAssured.baseURI = "http://localhost";
