@@ -1,5 +1,7 @@
 import com.github.javafaker.Faker;
 import io.restassured.RestAssured;
+import io.restassured.specification.RequestSpecification;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
@@ -18,6 +20,8 @@ public class DynamicJsonTest {
     String isbn = faker.address().countryCode();
     String bookName = faker.book().title();
     String authorName = faker.book().author();
+    RequestSpecification spec;
+    String path = System.getProperty("user.dir") + "/src/test/resources/librarybook.json";
 
     String book = "{\n" +
             "\n" +
@@ -47,12 +51,17 @@ public class DynamicJsonTest {
                 {faker.address().streetAddressNumber(), faker.address().countryCode(), faker.book().title(), faker.book().author()}};
     }
 
-    @Test(testName = "Validate Adding of New Book")
-    @Ignore
-    public void addBookUseCase1() {
+    @BeforeTest
+    public void setup() {
         RestAssured.baseURI = "http://216.10.245.166";
-        String response = given().log().all().header("Content-Type", "application/json")
-                .body(book).when().post("Library/Addbook.php")
+        RestAssured.basePath = "Library/Addbook.php";
+        spec = given().log().all().header("Content-Type", "application/json");
+    }
+
+    @Test(testName = "Validate Adding of New Book")
+    public void addBookUseCase1() {
+        String response = spec
+                .body(book).when().post()
                 .then().log().all().assertThat().statusCode(200).extract().response().asString();
 
         String bookid = JsonPathImpl.extractValueFromResponse(response, "ID");
@@ -61,11 +70,9 @@ public class DynamicJsonTest {
     }
 
     @Test(testName = "Validate Adding of New Book using TestNG Data Provider", dataProvider = "booksData")
-    @Ignore
     public void addBookUseCase2(String bookName, String isbn, String aisle, String authorName) {
-        RestAssured.baseURI = "http://216.10.245.166";
-        String response = given().log().all().header("Content-Type", "application/json")
-                .body(getBookData(bookName, isbn, aisle, authorName)).when().post("Library/Addbook.php")
+        String response = spec
+                .body(getBookData(bookName, isbn, aisle, authorName)).when().post()
                 .then().log().all().assertThat().statusCode(200).extract().response().asString();
 
         String bookid = JsonPathImpl.extractValueFromResponse(response, "ID");
@@ -73,14 +80,12 @@ public class DynamicJsonTest {
 
     }
 
-    String path = System.getProperty("user.dir") + "/src/test/resources/librarybook.json";
-
     @Test(testName = "Validate Adding of New Book via reading from JSON file")
+    @Ignore
     public void addBookUseCase3() throws IOException {
-        RestAssured.baseURI = "http://216.10.245.166";
-        given().log().all().header("Content-Type", "application/json")
+        spec
                 .body(new String(Files.readAllBytes(Paths.get(path))))
-                .when().post("Library/Addbook.php")
+                .when().post()
                 .then().assertThat().statusCode(200);
 
     }
