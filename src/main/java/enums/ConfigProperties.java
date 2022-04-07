@@ -1,9 +1,4 @@
 package enums;
 
-public enum ConfigProperties {
-
-    STRIPEBASEURI,
-    STRIPEBASEPATH,
-    STRIPECUSTOMERAPIENDPOINT,
-    STRIPESECRETKEY
+public interface ConfigProperties {
 }
