@@ -1,6 +1,6 @@
 package enums;
 
-public enum ConfigProperties {
+public enum SparksSpecs implements ConfigProperties {
 
     STRIPEBASEURI,
     STRIPEBASEPATH,
