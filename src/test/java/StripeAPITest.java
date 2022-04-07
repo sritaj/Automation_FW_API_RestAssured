@@ -1,5 +1,5 @@
 import com.github.javafaker.Faker;
-import enums.ConfigProperties;
+import enums.SparksSpecs;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -29,16 +29,16 @@ public class StripeAPITest {
 
     @BeforeTest
     public void setup() {
-        RestAssured.baseURI = PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.STRIPEBASEURI);
-        RestAssured.basePath = PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.STRIPEBASEPATH);
-        specs = given().auth().basic(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.STRIPESECRETKEY), "");
+        RestAssured.baseURI = PropertiesFileImpl.getDataFromPropertyFile(SparksSpecs.STRIPEBASEURI);
+        RestAssured.basePath = PropertiesFileImpl.getDataFromPropertyFile(SparksSpecs.STRIPEBASEPATH);
+        specs = given().auth().basic(PropertiesFileImpl.getDataFromPropertyFile(SparksSpecs.STRIPESECRETKEY), "");
     }
 
     @Ignore
     @Test(testName = "Validate customer list when no customers are present")
     public void getCustomerListWhenCustomersAreNotCreated() {
 
-        response = specs.get(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.STRIPECUSTOMERAPIENDPOINT));
+        response = specs.get(PropertiesFileImpl.getDataFromPropertyFile(SparksSpecs.STRIPECUSTOMERAPIENDPOINT));
         response.prettyPrint();
 
         resp = response.asString();
@@ -52,7 +52,7 @@ public class StripeAPITest {
     @Test(testName = "Validate creation of Customer without any body/inputs")
     public void createCustomerWithoutAnyBody() {
         response = specs.contentType(ContentType.ANY)
-                .when().post(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.STRIPECUSTOMERAPIENDPOINT));
+                .when().post(PropertiesFileImpl.getDataFromPropertyFile(SparksSpecs.STRIPECUSTOMERAPIENDPOINT));
         response.prettyPrint();
         resp = response.asString();
 
@@ -64,7 +64,7 @@ public class StripeAPITest {
     @Test(testName = "Validate creation of Customer with Form parameters")
     public void createCustomersWithFormParameters() {
         response = specs.formParam("name", name).formParam("email", email)
-                .when().post(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.STRIPECUSTOMERAPIENDPOINT));
+                .when().post(PropertiesFileImpl.getDataFromPropertyFile(SparksSpecs.STRIPECUSTOMERAPIENDPOINT));
         resp = response.asString();
 
         customer_id = JsonPathImpl.extractValueFromResponse(resp, "id");
@@ -79,7 +79,7 @@ public class StripeAPITest {
     @Test(testName = "Validate creation of Customer without authentication")
     public void createCustomerWithoutAuthentication() {
         response = given()
-                .when().post(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.STRIPECUSTOMERAPIENDPOINT));
+                .when().post(PropertiesFileImpl.getDataFromPropertyFile(SparksSpecs.STRIPECUSTOMERAPIENDPOINT));
         response.prettyPrint();
         resp = response.asString();
 
@@ -94,7 +94,7 @@ public class StripeAPITest {
     @Test(testName = "Validate customer list")
     public void getCustomerList() {
 
-        response = specs.queryParam("limit", "3").get(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.STRIPECUSTOMERAPIENDPOINT));
+        response = specs.queryParam("limit", "3").get(PropertiesFileImpl.getDataFromPropertyFile(SparksSpecs.STRIPECUSTOMERAPIENDPOINT));
         response.prettyPrint();
         response.then().assertThat().statusCode(200);
 
@@ -104,12 +104,13 @@ public class StripeAPITest {
         Assert.assertEquals(listSize, 3);
 
     }
+
     @Test(dependsOnMethods = {"createCustomersWithFormParameters"})
     @Ignore
-    public void getCustomerBasedOnID(){
+    public void getCustomerBasedOnID() {
 
         response = specs.pathParam("id", customer_id)
-                .when().get(PropertiesFileImpl.getDataFromPropertyFile(ConfigProperties.STRIPECUSTOMERAPIENDPOINT) + "/:{id}");
+                .when().get(PropertiesFileImpl.getDataFromPropertyFile(SparksSpecs.STRIPECUSTOMERAPIENDPOINT) + "/:{id}");
         response.prettyPrint();
         resp = response.asString();
 
