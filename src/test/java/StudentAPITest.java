@@ -14,7 +14,7 @@ import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
-public class StudentTest {
+public class StudentAPITest {
 
     /*
     Command to Run the Docker Setup for testing below APIS

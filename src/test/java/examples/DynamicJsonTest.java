@@ -1,3 +1,5 @@
+package examples;
+
 import com.github.javafaker.Faker;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;

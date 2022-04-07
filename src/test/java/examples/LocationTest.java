@@ -1,3 +1,5 @@
+package examples;
+
 import io.restassured.RestAssured;
 import org.testng.Assert;
 import utilities.JsonPathImpl;
@@ -5,7 +7,7 @@ import utilities.JsonPathImpl;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class Basics {
+public class LocationTest {
 
     public static void main(String[] args) {
 
@@ -38,8 +40,6 @@ public class Basics {
 
         System.out.println(response);
 
-//        JsonPath jsonpath = ResponseExtraction.rawToJSON(response);
-//        String placeID = jsonpath.get("place_id");
         String placeID = JsonPathImpl.extractValueFromResponse(response, "place_id");
         System.out.println(placeID);
 
@@ -60,8 +60,6 @@ public class Basics {
                 .then().assertThat().statusCode(200)
                 .extract().response().asString();
 
-//        JsonPath jpath = ResponseExtraction.rawToJSON(getUpdatedAddress);;
-//        String newAddress = jpath.get("address");
         String newAddress = JsonPathImpl.extractValueFromResponse(getUpdatedAddress, "address");
         System.out.println(newAddress);
 

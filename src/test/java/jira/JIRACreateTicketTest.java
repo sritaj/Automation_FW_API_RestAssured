@@ -1,3 +1,5 @@
+package jira;
+
 import com.github.javafaker.Faker;
 import io.restassured.RestAssured;
 import io.restassured.http.Cookie;
