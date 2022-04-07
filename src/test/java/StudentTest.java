@@ -1,4 +1,4 @@
-import com.github.javafaker.Faker;
+import dto.StudentData;
 import enums.StudentSpecs;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
@@ -10,7 +10,6 @@ import pojo.StudentPojo;
 import utilities.JsonPathImpl;
 import utilities.PropertiesFileImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
@@ -22,9 +21,19 @@ public class StudentTest {
     docker pull tejasn1/student-app
 
      */
+    Response response;
+    JsonPath js;
+    String resp;
     String studentEndpoint;
+    int studID;
+    List<Integer> studentID;
+    List<String> studentNames;
+    StudentData studentData;
+    StudentPojo stdData;
+
     @BeforeTest
     public void init() {
+        studentData = new StudentData();
         RestAssured.baseURI = PropertiesFileImpl.getDataFromPropertyFile(StudentSpecs.STUDENTBASEURI);
         RestAssured.port = Integer.parseInt(PropertiesFileImpl.getDataFromPropertyFile(StudentSpecs.STUDENTPORT));
         studentEndpoint = PropertiesFileImpl.getDataFromPropertyFile(StudentSpecs.STUDENTAPIENDPOINT);
@@ -33,59 +42,60 @@ public class StudentTest {
     @Test(testName = "Validate fetching of all the Students")
     public void getAllStudent() {
 
-        Response response = given().when().get(studentEndpoint+"/list");
+        response = given().when().get(studentEndpoint + "/list");
 
         response.prettyPrint();
-        response.then().assertThat().statusCode(200);
-        //Assert.assertEquals(response.getStatusCode(), 200); //TestNG assertion by validating on the response
+        //response.then().assertThat().statusCode(200);
+        Assert.assertEquals(response.getStatusCode(), 200); //TestNG assertion by validating on the response
+        resp = response.asString();
+        js = JsonPathImpl.rawToJSON(response.asString());
 
-        String resp = response.asString();
-        JsonPath js = JsonPathImpl.rawToJSON(resp);
-
-        List<String> studentNames = js.getList("firstName");
+        studentID = js.getList("id");
+        studID = studentID.get(0);
+        studentNames = js.getList("firstName");
         studentNames.forEach(System.out::println);
     }
 
     @Test(testName = "Validate fetching of Student based on specified query parameters")
     public void getFilteredStudents() {
 
-        Response response = given()
+        int limit = 1;
+        response = given()
                 .queryParam("programme", "Computer Science")
-                .queryParam("limit", 1)
-                .when().get(studentEndpoint+"/list")
+                .queryParam("limit", limit)
+                .when().get(studentEndpoint + "/list")
                 .then().extract().response();
 
         response.prettyPrint();
+        js = JsonPathImpl.rawToJSON(response.asString());
+
+        int list_size = js.getList("$").size();
+        Assert.assertEquals(list_size, limit);
     }
 
-    @Test(testName = "Validate fetching of Student based on the path parameters")
+    @Test(testName = "Validate fetching of Student based on the path parameters", dependsOnMethods = {"getAllStudent"})
     public void getSpecifiedStudent() {
 
-        Response response = given()
-                .pathParam("id", 1)
-                .when().get(studentEndpoint+"/{id}")
+        response = given()
+                .pathParam("id", studID)
+                .when().get(studentEndpoint + "/{id}")
                 .then().extract().response();
 
         response.prettyPrint();
-        System.out.println(response.getStatusCode());
+        Assert.assertEquals(response.getStatusCode(), 200);
     }
 
     @Test(testName = "Validate adding of new Student")
     public void createAStudent() {
 
-        Faker fs = new Faker();
-        String firstName = fs.name().firstName();
-        String lastName = fs.name().lastName();
-        String course = fs.book().title();
-        String email = firstName + "@gmail.com";
+        stdData = studentData.createStudentData();
+        String payload = "{\"firstName\":\"" + stdData.getFirstName() + "\"," +
+                "\"lastName\":\"" + stdData.getLastName() + "\"," +
+                "\"email\":\"" + stdData.getEmail() + "\"," +
+                "\"programme\":\"" + stdData.getProgramme() + "\"," +
+                "\"courses\":[\"C++\",\"JAVA\"]}"; //TODO - Passing stdData course Arraylist is giving issues
 
-        String payload = "{\"firstName\":\"" + firstName + "\"," +
-                "\"lastName\":\"" + lastName + "\"," +
-                "\"email\":\"" + email + "\"," +
-                "\"programme\":\"" + course + "\"," +
-                "\"courses\":[\"C++\",\"JAVA\"]}";
-
-        Response response = given()
+        response = given()
                 .header("Content-Type", "application/json")
                 .body(payload)
                 .when().post(studentEndpoint)
@@ -96,27 +106,15 @@ public class StudentTest {
         String resp = response.asString();
         String actualMsg = JsonPathImpl.extractValueFromResponse(resp, "msg");
         Assert.assertEquals(actualMsg, "Student added");
-
     }
 
     @Test(testName = "Validate adding of new Student using Pojo payload")
     public void createAStudentWithPojoPayload() {
 
-        StudentPojo student = new StudentPojo();
-        List<String> courses = new ArrayList<>();
-        courses.add("C++");
-        courses.add("Java");
-        Faker fs = new Faker();
-
-        student.setFirstName(fs.name().firstName());
-        student.setLastName(fs.name().lastName());
-        student.setEmail(fs.name().firstName() + "@gmail.com");
-        student.setProgramme(fs.book().title());
-        student.setCourses(courses);
-
-        Response response = given()
+        stdData = studentData.createStudentData();
+        response = given()
                 .header("Content-Type", "application/json")
-                .body(student)
+                .body(stdData)
                 .when().post(studentEndpoint)
                 .then().extract().response();
 
@@ -129,41 +127,32 @@ public class StudentTest {
 
     @Test(testName = "Update details for the specified student")
     public void updateSpecifiedStudent() {
-        StudentPojo updateStudent = new StudentPojo();
-        Faker fs = new Faker();
 
-        updateStudent.setFirstName(fs.name().firstName());
-        updateStudent.setLastName(fs.name().lastName());
-        updateStudent.setEmail(fs.name().firstName() + "@gmail.com");
-        updateStudent.setProgramme(fs.book().title());
-
-        Response response = given()
+        stdData = studentData.updateStudentData();
+        response = given()
                 .header("Content-Type", "application/json")
                 .pathParam("id", 104)
-                .body(updateStudent)
-                .when().put(studentEndpoint+"/{id}");
+                .body(stdData)
+                .when().put(studentEndpoint + "/{id}");
 
         response.prettyPrint();
         response.then().assertThat().statusCode(200);
 
         String resp = response.asString();
         String actualMsg = JsonPathImpl.extractValueFromResponse(resp, "msg");
-        Assert.assertEquals(actualMsg, "Student updated");
+        Assert.assertEquals(actualMsg, "Student Updated");
 
     }
 
     @Test(testName = "Validate updation of Email ID for the specified student")
     public void updateStudentEmailID() {
-        StudentPojo updateStudentEmailID = new StudentPojo();
-        Faker fs = new Faker();
 
-        updateStudentEmailID.setEmail(fs.name().firstName() + "@gmail.com");
-
-        Response response = given()
+        stdData = studentData.updateEmailAddress();
+        response = given()
                 .header("Content-Type", "application/json")
                 .pathParam("id", 104)
-                .body(updateStudentEmailID)
-                .when().patch(studentEndpoint+"/{id}");
+                .body(stdData)
+                .when().patch(studentEndpoint + "/{id}");
 
         response.prettyPrint();
         response.then().assertThat().statusCode(200);
@@ -176,9 +165,21 @@ public class StudentTest {
     @Test(testName = "Validate deletion of the Specified Student")
     public void deleteSpecifiedStudent() {
 
-        Response response = given()
-                .pathParam("id", 103)
-                .when().delete(studentEndpoint+"/{id}");
+        stdData = studentData.createStudentData();
+        given()
+                .header("Content-Type", "application/json")
+                .body(stdData)
+                .when().post(studentEndpoint);
+
+        response = given().when().get(studentEndpoint + "/list");
+        js = JsonPathImpl.rawToJSON(response.asString());
+        studentID = js.getList("id");
+        studID = studentID.get(studentID.size() - 1);
+        System.out.println(studID);
+
+        response = given()
+                .pathParam("id", studID)
+                .when().delete(studentEndpoint + "/{id}");
 
         response.prettyPrint();
         response.then().assertThat().statusCode(204);
