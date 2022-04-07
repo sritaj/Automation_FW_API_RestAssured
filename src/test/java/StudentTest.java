@@ -1,4 +1,5 @@
 import com.github.javafaker.Faker;
+import enums.StudentSpecs;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -7,6 +8,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pojo.StudentPojo;
 import utilities.JsonPathImpl;
+import utilities.PropertiesFileImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,18 +20,20 @@ public class StudentTest {
     /*
     Command to Run the Docker Setup for testing below APIS
     docker pull tejasn1/student-app
-    docker run -p 8085:8080 -d tejasn1/student-app
+
      */
+    String studentEndpoint;
     @BeforeTest
     public void init() {
-        RestAssured.baseURI = "http://localhost";
-        RestAssured.port = 8085;
+        RestAssured.baseURI = PropertiesFileImpl.getDataFromPropertyFile(StudentSpecs.STUDENTBASEURI);
+        RestAssured.port = Integer.parseInt(PropertiesFileImpl.getDataFromPropertyFile(StudentSpecs.STUDENTPORT));
+        studentEndpoint = PropertiesFileImpl.getDataFromPropertyFile(StudentSpecs.STUDENTAPIENDPOINT);
     }
 
     @Test(testName = "Validate fetching of all the Students")
     public void getAllStudent() {
 
-        Response response = given().when().get("student/list");
+        Response response = given().when().get(studentEndpoint+"/list");
 
         response.prettyPrint();
         response.then().assertThat().statusCode(200);
@@ -48,7 +52,7 @@ public class StudentTest {
         Response response = given()
                 .queryParam("programme", "Computer Science")
                 .queryParam("limit", 1)
-                .when().get("/student/list")
+                .when().get(studentEndpoint+"/list")
                 .then().extract().response();
 
         response.prettyPrint();
@@ -59,7 +63,7 @@ public class StudentTest {
 
         Response response = given()
                 .pathParam("id", 1)
-                .when().get("/student/{id}")
+                .when().get(studentEndpoint+"/{id}")
                 .then().extract().response();
 
         response.prettyPrint();
@@ -84,7 +88,7 @@ public class StudentTest {
         Response response = given()
                 .header("Content-Type", "application/json")
                 .body(payload)
-                .when().post("/student")
+                .when().post(studentEndpoint)
                 .then().extract().response();
 
         response.prettyPrint();
@@ -113,7 +117,7 @@ public class StudentTest {
         Response response = given()
                 .header("Content-Type", "application/json")
                 .body(student)
-                .when().post("/student")
+                .when().post(studentEndpoint)
                 .then().extract().response();
 
         response.prettyPrint();
@@ -137,7 +141,7 @@ public class StudentTest {
                 .header("Content-Type", "application/json")
                 .pathParam("id", 104)
                 .body(updateStudent)
-                .when().put("student/{id}");
+                .when().put(studentEndpoint+"/{id}");
 
         response.prettyPrint();
         response.then().assertThat().statusCode(200);
@@ -159,7 +163,7 @@ public class StudentTest {
                 .header("Content-Type", "application/json")
                 .pathParam("id", 104)
                 .body(updateStudentEmailID)
-                .when().patch("student/{id}");
+                .when().patch(studentEndpoint+"/{id}");
 
         response.prettyPrint();
         response.then().assertThat().statusCode(200);
@@ -174,7 +178,7 @@ public class StudentTest {
 
         Response response = given()
                 .pathParam("id", 103)
-                .when().delete("/student/{id}");
+                .when().delete(studentEndpoint+"/{id}");
 
         response.prettyPrint();
         response.then().assertThat().statusCode(204);
