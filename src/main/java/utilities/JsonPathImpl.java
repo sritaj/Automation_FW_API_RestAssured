@@ -1,4 +1,4 @@
-package reusableMethods;
+package utilities;
 
 import io.restassured.path.json.JsonPath;
 
