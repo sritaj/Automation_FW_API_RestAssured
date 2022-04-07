@@ -42,7 +42,7 @@ public class PropertiesFileImpl {
         String property = null;
         try {
             if (Objects.isNull(CONFIGMAP.get(key))) {
-                property = CONFIGMAP.get(key.name().toLowerCase());
+                property = CONFIGMAP.get(key.toString().toLowerCase());
             }
         } catch (NullPointerException e) {
             System.err.println("Null pointer exception" + e.getMessage());
