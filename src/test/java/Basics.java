@@ -1,6 +1,6 @@
 import io.restassured.RestAssured;
 import org.testng.Assert;
-import reusableMethods.JsonPathImpl;
+import utilities.JsonPathImpl;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
