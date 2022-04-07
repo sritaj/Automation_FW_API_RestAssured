@@ -1,7 +1,7 @@
 import io.restassured.parsing.Parser;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import reusableMethods.JsonPathImpl;
+import utilities.JsonPathImpl;
 
 import static io.restassured.RestAssured.given;
 

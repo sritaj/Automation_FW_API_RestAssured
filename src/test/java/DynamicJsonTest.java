@@ -5,7 +5,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
-import reusableMethods.JsonPathImpl;
+import utilities.JsonPathImpl;
 
 import java.io.IOException;
 import java.nio.file.Files;

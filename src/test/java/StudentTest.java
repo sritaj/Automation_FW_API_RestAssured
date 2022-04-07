@@ -6,7 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pojo.StudentPojo;
-import reusableMethods.JsonPathImpl;
+import utilities.JsonPathImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +63,7 @@ public class StudentTest {
                 .then().extract().response();
 
         response.prettyPrint();
+        System.out.println(response.getStatusCode());
     }
 
     @Test(testName = "Validate adding of new Student")

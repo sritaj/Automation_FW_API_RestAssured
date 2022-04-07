@@ -1,6 +1,6 @@
 import io.restassured.path.json.JsonPath;
 import org.testng.Assert;
-import reusableMethods.JsonPathImpl;
+import utilities.JsonPathImpl;
 
 import java.util.List;
 
