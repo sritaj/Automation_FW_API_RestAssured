@@ -3,6 +3,7 @@ import enums.StudentSpecs;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import listeners.CustomAnnotations;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -14,7 +15,7 @@ import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
-public class StudentAPITest {
+public class StudentAPITest extends BaseTest{
 
     /*
     Command to Run the Docker Setup for testing below APIS
@@ -39,6 +40,7 @@ public class StudentAPITest {
         studentEndpoint = PropertiesFileImpl.getDataFromPropertyFile(StudentSpecs.STUDENTAPIENDPOINT);
     }
 
+    @CustomAnnotations(testCaseType = "Integration")
     @Test(testName = "Validate fetching of all the Students")
     public void getAllStudent() {
 
@@ -56,6 +58,7 @@ public class StudentAPITest {
         studentNames.forEach(System.out::println);
     }
 
+    @CustomAnnotations(testCaseType = "Integration")
     @Test(testName = "Validate fetching of Student based on specified query parameters")
     public void getFilteredStudents() {
 
@@ -73,6 +76,7 @@ public class StudentAPITest {
         Assert.assertEquals(list_size, limit);
     }
 
+    @CustomAnnotations(testCaseType = "Integration")
     @Test(testName = "Validate fetching of Student based on the path parameters", dependsOnMethods = {"getAllStudent"})
     public void getSpecifiedStudent() {
 
@@ -85,6 +89,7 @@ public class StudentAPITest {
         Assert.assertEquals(response.getStatusCode(), 200);
     }
 
+    @CustomAnnotations(testCaseType = "Integration")
     @Test(testName = "Validate adding of new Student")
     public void createAStudent() {
 
@@ -108,6 +113,7 @@ public class StudentAPITest {
         Assert.assertEquals(actualMsg, "Student added");
     }
 
+    @CustomAnnotations(testCaseType = "Integration")
     @Test(testName = "Validate adding of new Student using Pojo payload")
     public void createAStudentWithPojoPayload() {
 
@@ -125,6 +131,7 @@ public class StudentAPITest {
         Assert.assertEquals(actualMsg, "Student added");
     }
 
+    @CustomAnnotations(testCaseType = "Integration")
     @Test(testName = "Update details for the specified student")
     public void updateSpecifiedStudent() {
 
@@ -144,6 +151,7 @@ public class StudentAPITest {
 
     }
 
+    @CustomAnnotations(testCaseType = "Integration")
     @Test(testName = "Validate updation of Email ID for the specified student")
     public void updateStudentEmailID() {
 
@@ -162,7 +170,8 @@ public class StudentAPITest {
         Assert.assertEquals(actualMsg, "Updated");
     }
 
-    @Test(testName = "Validate deletion of the Specified Student")
+    @CustomAnnotations(testCaseType = "E2E")
+    @Test(testName = "Validate deletion of the Specified Student", groups = "Regression")
     public void deleteSpecifiedStudent() {
 
         stdData = studentData.createStudentData();

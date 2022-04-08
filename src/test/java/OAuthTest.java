@@ -5,7 +5,7 @@ import utilities.JsonPathImpl;
 
 import static io.restassured.RestAssured.given;
 
-public class OAuthTest {
+public class OAuthTest extends BaseTest {
 
     @Test(testName = "Validate authentication error when there is no access token")
     public void validateAuthenticationError() {
