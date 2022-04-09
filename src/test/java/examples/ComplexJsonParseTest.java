@@ -2,13 +2,15 @@ package examples;
 
 import io.restassured.path.json.JsonPath;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 import utilities.JsonPathImpl;
 
 import java.util.List;
 
 public class ComplexJsonParseTest {
 
-    public static void main(String[] args) {
+    @Test(testName = "Validate Json Parsing Scenarios")
+    public void validateJSONParsing(){
 
         String sampleJSON = "{\r\n" +
                 "  \"dashboard\": {\r\n" +

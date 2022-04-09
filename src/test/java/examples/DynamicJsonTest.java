@@ -1,6 +1,7 @@
 package examples;
 
 import com.github.javafaker.Faker;
+import constants.FrameworkConstants;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeTest;
@@ -23,7 +24,7 @@ public class DynamicJsonTest {
     String bookName = faker.book().title();
     String authorName = faker.book().author();
     RequestSpecification spec;
-    String path = System.getProperty("user.dir") + "/src/test/resources/librarybook.json";
+    String path = FrameworkConstants.getJsonFilePath() + "/librarybook.json";
 
     String book = "{\n" +
             "\n" +

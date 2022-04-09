@@ -2,6 +2,7 @@ package examples;
 
 import io.restassured.RestAssured;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 import utilities.JsonPathImpl;
 
 import static io.restassured.RestAssured.given;
@@ -9,8 +10,8 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class LocationTest {
 
-    public static void main(String[] args) {
-
+    @Test(testName = "Validate Location APIs")
+    public void validateLocationAPIs(){
         String place = "{\n" +
                 "  \"location\": {\n" +
                 "    \"lat\": -38.383494,\n" +
@@ -64,7 +65,6 @@ public class LocationTest {
         System.out.println(newAddress);
 
         Assert.assertEquals(newAddress, updatedAddress);
-
     }
 
 }
