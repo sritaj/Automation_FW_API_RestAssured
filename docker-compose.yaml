@@ -1,0 +1,9 @@
+version: "3"
+services:
+  hub:
+    image: rest-assured-apis:latest
+    restart: always
+    environment:
+      - MODULE=testNG.xml
+    volumes:
+      - /Users/sritaj/TechnicalKnowHow/Assesment/testResults:/usr/share/tag/test-output
