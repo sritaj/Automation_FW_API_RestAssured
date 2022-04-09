@@ -5,9 +5,10 @@
 
 parameters:
   - name : TestXMLs
-    default: testNG.xml
+    default: sample.xml
     values:
       - testNG.xml
+      - sample.xml
 
 trigger:
 - master
