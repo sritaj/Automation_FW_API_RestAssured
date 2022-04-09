@@ -1,5 +1,6 @@
 package examples;
 
+import base.BaseTest;
 import io.restassured.path.json.JsonPath;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -7,7 +8,7 @@ import utilities.JsonPathImpl;
 
 import java.util.List;
 
-public class ComplexJsonParseTest {
+public class ComplexJsonParseTest extends BaseTest {
 
     @Test(testName = "Validate Json Parsing Scenarios")
     public void validateJSONParsing(){

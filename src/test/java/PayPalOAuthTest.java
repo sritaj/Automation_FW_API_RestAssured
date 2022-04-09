@@ -1,3 +1,4 @@
+import base.BaseTest;
 import dto.PayPalProductData;
 import enums.PayPalSpecs;
 import io.restassured.RestAssured;

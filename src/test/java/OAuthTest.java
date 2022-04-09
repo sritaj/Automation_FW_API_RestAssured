@@ -1,3 +1,4 @@
+import base.BaseTest;
 import io.restassured.parsing.Parser;
 import org.testng.Assert;
 import org.testng.annotations.Test;

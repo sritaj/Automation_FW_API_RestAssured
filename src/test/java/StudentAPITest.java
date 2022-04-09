@@ -1,3 +1,4 @@
+import base.BaseTest;
 import dto.StudentData;
 import enums.StudentSpecs;
 import io.restassured.RestAssured;
