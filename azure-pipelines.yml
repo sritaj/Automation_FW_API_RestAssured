@@ -5,6 +5,7 @@
 
 parameters:
   - name : TestXMLs
+    default: testNG.xml
     values:
       - testNG.xml
 
