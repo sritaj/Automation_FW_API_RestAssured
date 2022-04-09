@@ -5,7 +5,7 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import listeners.CustomAnnotations;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pojo.StudentPojo;
 import utilities.JsonPathImpl;
@@ -15,7 +15,7 @@ import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
-public class StudentAPITest extends BaseTest{
+public class StudentAPITest extends BaseTest {
 
     /*
     Command to Run the Docker Setup for testing below APIS
@@ -32,7 +32,7 @@ public class StudentAPITest extends BaseTest{
     StudentData studentData;
     StudentPojo stdData;
 
-    @BeforeTest
+    @BeforeClass
     public void init() {
         studentData = new StudentData();
         RestAssured.baseURI = PropertiesFileImpl.getDataFromPropertyFile(StudentSpecs.STUDENTBASEURI);

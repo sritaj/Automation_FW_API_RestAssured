@@ -6,7 +6,7 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import utilities.JsonPathImpl;
@@ -27,7 +27,7 @@ public class StripeAPITest {
     final String errorMessageForMissingAPIKey = "You did not provide an API key. You need to provide your API key in the Authorization header, using Bearer auth (e.g. 'Authorization: Bearer YOUR_SECRET_KEY'). See https://stripe.com/docs/api#authentication for details, or we can help at https://support.stripe.com/.";
     final String errorMessageTypeForMissingAPIKey = "invalid_request_error";
 
-    @BeforeTest
+    @BeforeClass
     public void setup() {
         RestAssured.baseURI = PropertiesFileImpl.getDataFromPropertyFile(SparksSpecs.STRIPEBASEURI);
         RestAssured.basePath = PropertiesFileImpl.getDataFromPropertyFile(SparksSpecs.STRIPEBASEPATH);
@@ -113,7 +113,6 @@ public class StripeAPITest {
                 .when().get(PropertiesFileImpl.getDataFromPropertyFile(SparksSpecs.STRIPECUSTOMERAPIENDPOINT) + "/:{id}");
         response.prettyPrint();
         resp = response.asString();
-
 
     }
 
