@@ -1,4 +1,5 @@
-import io.restassured.RestAssured;
+package base;
+
 import listeners.RetryAnalyzer;
 import org.testng.ITestContext;
 import org.testng.ITestNGMethod;
