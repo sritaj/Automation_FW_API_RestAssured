@@ -3,6 +3,11 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
+parameters:
+  - name : TestXMLs
+    values:
+      - testNG.xml
+
 trigger:
 - master
 
@@ -11,6 +16,7 @@ pool:
 
 variables:
   tag: '$(Build.BuildId)'
+  testSuite: test
 
 steps:
 - task: Maven@3
@@ -22,7 +28,7 @@ steps:
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+    goals: clean package test -DsuiteXmlFile=src/test/resources/xmls/${{parameters.TestXMLs}}
 
 - task: Docker@2
   inputs:
