@@ -13,7 +13,7 @@ public class FrameworkConstants {
 
     private static final String RESOURCEPATH = System.getProperty("user.dir");
     private static final String PROPERTIESFILEPATH = RESOURCEPATH + "/src/test/resources/properties/config.properties";
-    private static final String EXTENTREPORTSPATH = RESOURCEPATH + "/target/reports/";
+    private static final String EXTENTREPORTSPATH = RESOURCEPATH + "/test-reports/";
     private static final String JSONFILESPATH = RESOURCEPATH + "/src/test/resources/jsonfiles";
     public static final int RETRYCOUNTS = 1;
 
