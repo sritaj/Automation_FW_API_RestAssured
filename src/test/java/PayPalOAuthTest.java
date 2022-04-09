@@ -13,7 +13,7 @@ import utilities.PropertiesFileImpl;
 
 import static io.restassured.RestAssured.given;
 
-public class PayPalOAuthTest extends BaseTest{
+public class PayPalOAuthTest extends BaseTest {
 
     RequestSpecification specsForAuth;
     RequestSpecification specs;
@@ -28,32 +28,34 @@ public class PayPalOAuthTest extends BaseTest{
     final String paypalIDValue = "PRODUCT-18062020-001";
 
     @BeforeClass
-    public void setup(){
+    public void setup() {
         RestAssured.baseURI = PropertiesFileImpl.getDataFromPropertyFile(PayPalSpecs.PAYPALOAUTHURI);
         specsForAuth = given().param("grant_type", "client_credentials").auth().preemptive().basic(username, password);
         pdata = new PayPalProductData();
     }
 
     @Test(testName = "Validate retrieval of Access Token")
-    public void getAccessToken(){
+    public void getAccessToken() {
         response = specsForAuth.post("/v1/oauth2/token").then().extract().response();
         response.prettyPrint();
         resp = response.asString();
         accessToken = JsonPathImpl.extractValueFromResponse(resp, "access_token");
 
-        Assert.assertEquals(response.getStatusCode(),200);
+        Assert.assertEquals(response.getStatusCode(), 200);
     }
 
     @Test(testName = "Validate creation of product", dependsOnMethods = "getAccessToken")
-    public void createProduct(){
+    public void createProduct() {
         ppojo = pdata.createPayPalProduct();
         specs = given().auth().oauth2(accessToken).contentType(ContentType.JSON);
         response = specs.header(paypalIDKey, paypalIDValue)
                 .body(ppojo)
+                .when()
                 .post("/v1/catalogs/products")
                 .then().extract().response();
 
         response.prettyPrint();
+        Assert.assertEquals(response.getStatusCode(), 200);
     }
 
 
