@@ -33,17 +33,16 @@ public class ReqresAPITest {
     public void i_add_a_resource_by_providing_and() {
         response = spec
                 .when().post("/users");
-        response.prettyPrint();
     }
 
     @Then("I should get {string} response with id")
     public void i_should_get_response_with_id(String string) {
-
-        Assert.assertEquals(response.getStatusCode(), Integer.parseInt(string));
         resp = response.asString();
         String id = JsonPathImpl.extractValueFromResponse(resp, "id");
-        System.out.println(id);
         Assert.assertNotNull(id);
+        Assert.assertEquals(response.getStatusCode(), Integer.parseInt(string));
+        response.prettyPrint();
+        System.out.println(id);
     }
 
     @Given("A list of users are available")
