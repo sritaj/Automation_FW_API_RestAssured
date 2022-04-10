@@ -1,0 +1,13 @@
+# Ignore Mac system files
+.DS_store
+
+test-output/
+
+# Ignore .idea
+.idea/
+
+# Ignore Allure Results content
+allure-results
+
+
+
