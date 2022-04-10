@@ -1,4 +1,4 @@
-<img src="https://www.fleekitsolutions.com/wp-content/uploads/2020/02/Rest-assured.jpg" width="250">
+![This is an image](https://www.north-47.com/wp-content/uploads/2021/06/rest-assured-resized-copy.jpg) 
 
 #RestAssured APIAutomation Framework
 Rest Assured Automation Framework for testing APIs with **TestNG** integrated with **Extent Reports**, **Faker library** and relevant dependencies.
