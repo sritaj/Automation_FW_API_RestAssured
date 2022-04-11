@@ -46,7 +46,7 @@ Rest Assured Automation Framework for testing APIs with **TestNG** integrated wi
 3. Maven Command to Execute TestNG xml suite to run test -> ***mvn clean package test -DsuiteXmlFile=src/test/resources/xmls/$testSuite***; replace $testSuite with the xml name
 4. Maven Command to Execute TestNG xml suite to generate Maven Cucumber Report -> ***mvn test -DsuiteXmlFile=src/test/resources/xmls/$testSuite verify***; replace $testSuite with the xml name for Cucumber classes
 5. Terminal Command to check Allure Reports after Cucumber Tests -> ***allure serve allure-results***
-6. Docker Commands -> To Build Image: "***docker build -t <prefered image name>:latest .***" ex: "docker build -t rest-assured-apis:latest ."
+6. Docker Commands -> To Build Image: "***docker build -t {prefered image name}:latest .***" ex: "docker build -t rest-assured-apis:latest ."
 7. DockerCompose command -> ***docker-compose up*** to run the Build and get the tests results in local system as per the Volume Mapping
 
 ## Common Troubleshoots For Local System
