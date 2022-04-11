@@ -15,6 +15,7 @@ public class FrameworkConstants {
     private static final String PROPERTIESFILEPATH = RESOURCEPATH + "/src/test/resources/properties/config.properties";
     private static final String EXTENTREPORTSPATH = RESOURCEPATH + "/test-reports/";
     private static final String JSONFILESPATH = RESOURCEPATH + "/src/test/resources/jsonfiles";
+    private static final String RESTASSUREDLOGSPATH = RESOURCEPATH + "/test-logs/";
     public static final int RETRYCOUNTS = 1;
 
     public static String getPropertiesFilePath() {
@@ -35,4 +36,6 @@ public class FrameworkConstants {
     public static String getJsonFilePath() {
         return JSONFILESPATH;
     }
+
+    public static String getRestassuredLogsPath() {return  RESTASSUREDLOGSPATH;}
 }
