@@ -1,14 +1,15 @@
 ![This is an image](https://www.north-47.com/wp-content/uploads/2021/06/rest-assured-resized-copy.jpg) 
 
 # RestAssured APIAutomation Framework
-Rest Assured Automation Framework for testing APIs with **TestNG** integrated with **Extent Reports**, **Faker library** and relevant dependencies.
+Rest Assured Automation Framework with **TestNG** and **Cucumber** integration, along with multiple reporting tools - **Extent Reports**, **Allure Reports**, **Maven Cucumber Report** and **Faker library**, **Azure Devops**, **Docker Setup** and relevant dependencies.
 
 ## Tech Stack
 1. Java
 2. Rest Assured 
 3. TestNG
-4. Docker
-5. YAML
+4. Cucumber
+5. Docker Containerization
+6. Azure Devops 
 
 ## Included/Features Implemented
 ### RestAssured Framework with TestNG
