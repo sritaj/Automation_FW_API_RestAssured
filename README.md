@@ -31,7 +31,8 @@ Rest Assured Automation Framework for testing APIs with **TestNG** integrated wi
 2. docker-compose.yaml -> to use the Image locally present to run by specifying the parameters required for Entrypoint and Volume Mapping
 3. azure-pipelines.yml -> to build the Maven project and run the Tests by specifying the testNG xml suite and build and push the Docker image to repository
 4. pom.xml -> maven pom.xml specifying all the dependencies and plugins for goals, reports and running the specified testNG xml suite on runtime (locally/jenkins/azuredevops)
-5. TestNG XML -> XMLs for regular testNG tests and Cucumber tests
+5. TestNG XML -> XMLs for regular testNG tests and Cucumber tests 
+6. Examples on PropertiesFile to read values from config.properties file, ENUM to pass value to properties method, RestAssured logging, JSONPath wrapper classes 
 
 ## Not Included/Yet to be Done
 1. Parallel Execution Examples for TestNG tests and Cucumber Tests
