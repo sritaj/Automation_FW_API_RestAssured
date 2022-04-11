@@ -12,3 +12,12 @@ Feature: End To End Testing for Regres APIs
     And I specify the pagecount as "2"
     When I fetch the users
     Then I should get "200" response and page value as "2" in response body
+
+
+  @EndToEnd
+  Scenario: User is able to retrieve the resource
+    Given As an user
+    When I fetch the user by passing id "2"
+    Then I should get "200" response and the response body with details
+      | email                  | first_name | last_name |
+      | janet.weaver@reqres.in | Janet      | Weaver    |
