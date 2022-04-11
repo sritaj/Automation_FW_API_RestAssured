@@ -13,6 +13,7 @@ import utilities.JsonPathImpl;
 import utilities.PropertiesFileImpl;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.config.EncoderConfig.encoderConfig;
 
 public class StripeAPITest {
 
@@ -20,9 +21,6 @@ public class StripeAPITest {
     Response response;
     String resp;
     String customer_id;
-    Faker fs = new Faker();
-    String email = fs.internet().emailAddress();
-    String name = fs.name().firstName();
 
     final String errorMessageForMissingAPIKey = "You did not provide an API key. You need to provide your API key in the Authorization header, using Bearer auth (e.g. 'Authorization: Bearer YOUR_SECRET_KEY'). See https://stripe.com/docs/api#authentication for details, or we can help at https://support.stripe.com/.";
     final String errorMessageTypeForMissingAPIKey = "invalid_request_error";
@@ -49,7 +47,7 @@ public class StripeAPITest {
         Assert.assertEquals(datasize, 0);
     }
 
-    @Test(testName = "Validate creation of Customer without any body/inputs")
+    @Test(testName = "Validate creation of Customer without any body/inputs", priority = 0)
     public void createCustomerWithoutAnyBody() {
         response = specs.contentType(ContentType.ANY)
                 .when().post(PropertiesFileImpl.getDataFromPropertyFile(SparksSpecs.STRIPECUSTOMERAPIENDPOINT));
@@ -61,9 +59,13 @@ public class StripeAPITest {
         Assert.assertNotNull(id);
     }
 
-    @Test(testName = "Validate creation of Customer with Form parameters")
+    @Test(testName = "Validate creation of Customer with Form parameters", priority = 1)
     public void createCustomersWithFormParameters() {
-        response = specs.formParam("name", name).formParam("email", email)
+        Faker fs = new Faker();
+        String email = fs.internet().emailAddress();
+        String name = fs.name().firstName();
+        response = specs.config(RestAssured.config().encoderConfig(encoderConfig().encodeContentTypeAs("*/*", ContentType.TEXT)))
+                .formParam("name", name).formParam("email", email)
                 .when().post(PropertiesFileImpl.getDataFromPropertyFile(SparksSpecs.STRIPECUSTOMERAPIENDPOINT));
         resp = response.asString();
 
@@ -76,7 +78,7 @@ public class StripeAPITest {
         Assert.assertEquals(actualEmailID, email);
     }
 
-    @Test(testName = "Validate creation of Customer without authentication")
+    @Test(testName = "Validate creation of Customer without authentication", priority = 3)
     public void createCustomerWithoutAuthentication() {
         response = given()
                 .when().post(PropertiesFileImpl.getDataFromPropertyFile(SparksSpecs.STRIPECUSTOMERAPIENDPOINT));
@@ -91,7 +93,7 @@ public class StripeAPITest {
         Assert.assertEquals(errorType, errorMessageTypeForMissingAPIKey);
     }
 
-    @Test(testName = "Validate customer list")
+    @Test(testName = "Validate customer list", priority = 4)
     public void getCustomerList() {
 
         response = specs.queryParam("limit", "3").get(PropertiesFileImpl.getDataFromPropertyFile(SparksSpecs.STRIPECUSTOMERAPIENDPOINT));
@@ -105,8 +107,7 @@ public class StripeAPITest {
 
     }
 
-    @Test(dependsOnMethods = {"createCustomersWithFormParameters"})
-    @Ignore
+    @Test(testName = "Validate fetching of Customer based on ID", dependsOnMethods = {"createCustomersWithFormParameters"}, priority = 5)
     public void getCustomerBasedOnID() {
 
         response = specs.pathParam("id", customer_id)
