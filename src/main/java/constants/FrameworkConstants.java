@@ -6,6 +6,9 @@ import utilities.PropertiesFileImpl;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * FrameworkConstants class to store paths and common properties
+ */
 public class FrameworkConstants {
 
     private FrameworkConstants() {
@@ -18,10 +21,20 @@ public class FrameworkConstants {
     private static final String RESTASSUREDLOGSPATH = RESOURCEPATH + "/test-logs/";
     public static final int RETRYCOUNTS = 1;
 
+    /**
+     * Method to get Properties file path
+     *
+     * @return String - Properties file path
+     */
     public static String getPropertiesFilePath() {
         return PROPERTIESFILEPATH;
     }
 
+    /**
+     * Method to get Extent Report path
+     *
+     * @return String - Extent report path
+     */
     public static String getExtentReportPath() {
         if (PropertiesFileImpl.getDataFromPropertyFile(ExtentReportSpecs.OVERRIDEREPORTS).equalsIgnoreCase("yes")) {
             return EXTENTREPORTSPATH;
@@ -29,13 +42,30 @@ public class FrameworkConstants {
         return EXTENTREPORTSPATH + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")) + "/";
     }
 
+    /**
+     * Method to get retry counts
+     *
+     * @return int - retry counts
+     */
     public static int getRetryCounts() {
         return RETRYCOUNTS;
     }
 
+    /**
+     * Method to get Json file path
+     *
+     * @return String - Json file path
+     */
     public static String getJsonFilePath() {
         return JSONFILESPATH;
     }
 
-    public static String getRestassuredLogsPath() {return  RESTASSUREDLOGSPATH;}
+    /**
+     * Method to get Rest assured logs file path
+     *
+     * @return String - Rest assured logs file path
+     */
+    public static String getRestassuredLogsPath() {
+        return RESTASSUREDLOGSPATH;
+    }
 }
