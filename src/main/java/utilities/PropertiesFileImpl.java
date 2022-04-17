@@ -7,11 +7,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
 
-public class PropertiesFileImpl {
+/**
+ * PropertiesFileImpl class to load PropertiesFile and method to read specified key value from it
+ */
+public final class PropertiesFileImpl {
 
     private PropertiesFileImpl() {
     }
@@ -19,38 +21,33 @@ public class PropertiesFileImpl {
     private static Properties prop = new Properties();
     private static final HashMap<String, String> CONFIGMAP = new HashMap<>();
 
-    //defining the properties file load in static block so that it can be initialized once
     static {
         try {
-            File f = new File(FrameworkConstants.getPropertiesFilePath());
-            FileInputStream fis = new FileInputStream(f);
+            File file = new File(FrameworkConstants.getPropertiesFilePath());
+            FileInputStream fis = new FileInputStream(file);
             prop.load(fis);
 
-            // Creating Hashmap, relevant when properties file is read multiple times and needs to be faster then the normal hashtable approach
-            for (Map.Entry<Object, Object> entry : prop.entrySet()) {
-                CONFIGMAP.put(String.valueOf(entry.getKey()), String.valueOf(entry.getValue()));
-            }
+            prop.forEach((key, value) -> CONFIGMAP.put(String.valueOf(key), String.valueOf(value)));
 
-            //prop.entrySet().forEach(entry -> CONFIGMAP.put(String.valueOf(entry.getKey()), String.valueOf(entry.getValue())));
         } catch (IOException e) {
-            System.err.println("Properties file couldn't be found" + e.getMessage());
+            e.printStackTrace();
         }
-
     }
 
-    public static String getDataFromPropertyFile(ConfigProperties key) {
-        String property = null;
+    /**
+     * Method to retrieve the key value from properties file
+     *
+     * @param propertyKey - The Enum for which the value needs to be extracted
+     * @return value of the specified propertyKey
+     */
+    public static String getDataFromPropertyFile(ConfigProperties propertyKey) {
         try {
-            if (Objects.isNull(CONFIGMAP.get(key))) {
-                property = CONFIGMAP.get(key.toString().toLowerCase());
+            if (Objects.isNull(propertyKey) || Objects.isNull(CONFIGMAP.get(propertyKey.toString().toLowerCase()))) {
+                System.err.println("Specified Key -> '" + propertyKey + "' is not found in config properties");
             }
         } catch (NullPointerException e) {
             System.err.println("Null pointer exception" + e.getMessage());
         }
-        if (property == null) {
-            throw new NullPointerException("Specified Key -> '" + property + "' is not found in config properties");
-        }
-        return property;
+        return CONFIGMAP.get(propertyKey.toString().toLowerCase());
     }
-
 }
