@@ -1,10 +1,11 @@
+import annotations.CustomFrameworkAnnotations;
 import base.BaseTest;
 import dto.StudentData;
 import enums.StudentSpecs;
+import enums.TestCaseType;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import listeners.CustomAnnotations;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -19,9 +20,10 @@ import static io.restassured.RestAssured.given;
 public class StudentAPITest extends BaseTest {
 
     /*
-    Command to Run the Docker Setup for testing below APIS
-    docker pull tejasn1/student-app
-
+    To pull the student app image, run docker pull tejasn1/student-app
+    You can launch the student-app using the command below
+    docker run -p 8085:8080 -d tejasn1/student-app
+    You can then access the student app on the url http://localhost:8085/student/list
      */
     Response response;
     JsonPath js;
@@ -41,8 +43,8 @@ public class StudentAPITest extends BaseTest {
         studentEndpoint = PropertiesFileImpl.getDataFromPropertyFile(StudentSpecs.STUDENTAPIENDPOINT);
     }
 
-    @CustomAnnotations(testCaseType = "Integration")
-    @Test(testName = "Validate fetching of all the Students")
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION)
+    @Test(testName = "Validate fetching of all the Students", groups = {"regression"})
     public void getAllStudent() {
 
         response = given().when().get(studentEndpoint + "/list");
@@ -59,8 +61,8 @@ public class StudentAPITest extends BaseTest {
         studentNames.forEach(System.out::println);
     }
 
-    @CustomAnnotations(testCaseType = "Integration")
-    @Test(testName = "Validate fetching of Student based on specified query parameters")
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION)
+    @Test(testName = "Validate fetching of Student based on specified query parameters",  groups = {"regression"})
     public void getFilteredStudents() {
 
         int limit = 1;
@@ -77,8 +79,8 @@ public class StudentAPITest extends BaseTest {
         Assert.assertEquals(list_size, limit);
     }
 
-    @CustomAnnotations(testCaseType = "Integration")
-    @Test(testName = "Validate fetching of Student based on the path parameters", dependsOnMethods = {"getAllStudent"})
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION)
+    @Test(testName = "Validate fetching of Student based on the path parameters", dependsOnMethods = {"getAllStudent"},  groups = {"regression"})
     public void getSpecifiedStudent() {
 
         response = given()
@@ -90,8 +92,8 @@ public class StudentAPITest extends BaseTest {
         Assert.assertEquals(response.getStatusCode(), 200);
     }
 
-    @CustomAnnotations(testCaseType = "Integration")
-    @Test(testName = "Validate adding of new Student")
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.E2E)
+    @Test(testName = "Validate adding of new Student",  groups = {"regression"})
     public void createAStudent() {
 
         stdData = studentData.createStudentData();
@@ -114,8 +116,8 @@ public class StudentAPITest extends BaseTest {
         Assert.assertEquals(actualMsg, "Student added");
     }
 
-    @CustomAnnotations(testCaseType = "Integration")
-    @Test(testName = "Validate adding of new Student using Pojo payload")
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.E2E)
+    @Test(testName = "Validate adding of new Student using Pojo payload",  groups = {"regression"})
     public void createAStudentWithPojoPayload() {
 
         stdData = studentData.createStudentData();
@@ -132,8 +134,8 @@ public class StudentAPITest extends BaseTest {
         Assert.assertEquals(actualMsg, "Student added");
     }
 
-    @CustomAnnotations(testCaseType = "Integration")
-    @Test(testName = "Update details for the specified student")
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION)
+    @Test(testName = "Update details for the specified student",  groups = {"regression"})
     public void updateSpecifiedStudent() {
 
         stdData = studentData.updateStudentData();
@@ -152,8 +154,8 @@ public class StudentAPITest extends BaseTest {
 
     }
 
-    @CustomAnnotations(testCaseType = "Integration")
-    @Test(testName = "Validate updation of Email ID for the specified student")
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION)
+    @Test(testName = "Validate updation of Email ID for the specified student",  groups = {"regression"})
     public void updateStudentEmailID() {
 
         stdData = studentData.updateEmailAddress();
@@ -171,8 +173,8 @@ public class StudentAPITest extends BaseTest {
         Assert.assertEquals(actualMsg, "Updated");
     }
 
-    @CustomAnnotations(testCaseType = "E2E")
-    @Test(testName = "Validate deletion of the Specified Student", groups = "Regression")
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.E2E)
+    @Test(testName = "Validate deletion of the Specified Student",  groups = {"regression"})
     public void deleteSpecifiedStudent() {
 
         stdData = studentData.createStudentData();
