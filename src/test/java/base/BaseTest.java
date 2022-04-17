@@ -5,16 +5,17 @@ import org.testng.ITestContext;
 import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-import reports.ExtentReportsImp;
+import reports.ExtentReportImpl;
 
 import java.lang.reflect.Method;
 
 public class BaseTest {
 
-    @BeforeSuite
+    @BeforeSuite(alwaysRun = true)
     public void beforeSuite(ITestContext context) {
+
         // Extent Report Initialization
-        ExtentReportsImp.initializeReport();
+        ExtentReportImpl.initializeReport();
 
         //Initializing Tests with Retry Analyzer Annotation
         for (ITestNGMethod method : context.getAllTestMethods()) {
@@ -22,35 +23,39 @@ public class BaseTest {
         }
     }
 
-    @BeforeMethod
-    public void setup(Method method) {
+    @BeforeMethod(alwaysRun = true)
+    protected void setUp(Method method) {
+
         // Extent Report Initialization
-        String testName = method.getName();
         String testDescription = method.getAnnotation(Test.class).testName();
-        ExtentReportsImp.startTestExecution(testName, testDescription);
+        String testName = method.getName();
+        ExtentReportImpl.startTestExecution(testDescription, testName);
+        ExtentReportImpl.logSteps(testName + " -> Execution starts");
+
     }
 
-    @AfterMethod
-    public void tearDown(ITestResult result, Method method) {
-        ExtentReportsImp.addDetails(method);
-        ExtentReportsImp.addCustomDetails(method);
+    @AfterMethod(alwaysRun = true)
+    protected void tearDown(ITestResult result, Method method) {
+        String testName = result.getName();
+        ExtentReportImpl.logSteps(result.getName() + " -> Execution ended");
+        ExtentReportImpl.addDetails(method);
+
         if (ITestResult.FAILURE == result.getStatus()) {
             RetryAnalyzer rerun = new RetryAnalyzer();
             rerun.retry(result);
+            ExtentReportImpl.failTest(testName, result.getThrowable().getMessage(), result.getThrowable());
 
         } else if (ITestResult.SUCCESS == result.getStatus()) {
-            String testName = result.getName();
-            ExtentReportsImp.passTest(testName);
+            ExtentReportImpl.passTest(testName);
 
         } else if (ITestResult.SKIP == result.getStatus()) {
-            String testName = result.getName();
-            ExtentReportsImp.skipTest(testName);
+            ExtentReportImpl.skipTest(testName);
         }
 
     }
 
-    @AfterSuite()
+    @AfterSuite(alwaysRun = true)
     public void afterSuite() {
-        ExtentReportsImp.flushReports();
+        ExtentReportImpl.flushReports();
     }
 }
