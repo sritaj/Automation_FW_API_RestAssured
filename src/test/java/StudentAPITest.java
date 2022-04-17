@@ -10,8 +10,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pojo.StudentPojo;
-import utilities.JsonPathImpl;
-import utilities.PropertiesFileImpl;
+import utils.JsonPathImpl;
+import utils.PropertiesFileImpl;
 
 import java.util.List;
 

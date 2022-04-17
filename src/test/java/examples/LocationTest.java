@@ -3,7 +3,7 @@ package examples;
 import io.restassured.RestAssured;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import utilities.JsonPathImpl;
+import utils.JsonPathImpl;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;

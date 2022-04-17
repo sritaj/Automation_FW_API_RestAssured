@@ -1,7 +1,7 @@
 package constants;
 
 import enums.ExtentReportSpecs;
-import utilities.PropertiesFileImpl;
+import utils.PropertiesFileImpl;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

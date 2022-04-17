@@ -9,8 +9,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
-import utilities.JsonPathImpl;
-import utilities.PropertiesFileImpl;
+import utils.JsonPathImpl;
+import utils.PropertiesFileImpl;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.config.EncoderConfig.encoderConfig;

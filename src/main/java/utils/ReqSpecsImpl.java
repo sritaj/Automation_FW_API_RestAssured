@@ -1,4 +1,4 @@
-package utilities;
+package utils;
 
 import constants.FrameworkConstants;
 import io.restassured.builder.RequestSpecBuilder;

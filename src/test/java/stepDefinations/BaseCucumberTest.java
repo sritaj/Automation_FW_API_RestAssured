@@ -3,7 +3,7 @@ package stepDefinations;
 import enums.ReqResSpecs;
 import io.cucumber.java.Before;
 import io.restassured.RestAssured;
-import utilities.PropertiesFileImpl;
+import utils.PropertiesFileImpl;
 
 public class BaseCucumberTest {
 

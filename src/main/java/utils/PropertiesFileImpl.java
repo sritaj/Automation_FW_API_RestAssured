@@ -1,4 +1,4 @@
-package utilities;
+package utils;
 
 import constants.FrameworkConstants;
 import enums.ConfigProperties;

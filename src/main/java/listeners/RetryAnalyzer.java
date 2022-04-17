@@ -4,7 +4,7 @@ import constants.FrameworkConstants;
 import enums.TestSpecs;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
-import utilities.PropertiesFileImpl;
+import utils.PropertiesFileImpl;
 
 /**
  * RetryAnalyzer class to implement Retry runs for failed Tests

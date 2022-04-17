@@ -1,4 +1,4 @@
-package utilities;
+package utils;
 
 import io.restassured.path.json.JsonPath;
 

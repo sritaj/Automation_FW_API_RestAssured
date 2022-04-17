@@ -2,7 +2,7 @@ import base.BaseTest;
 import io.restassured.parsing.Parser;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import utilities.JsonPathImpl;
+import utils.JsonPathImpl;
 
 import static io.restassured.RestAssured.given;
 

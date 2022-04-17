@@ -9,8 +9,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pojo.PayPalProductPojo;
-import utilities.JsonPathImpl;
-import utilities.PropertiesFileImpl;
+import utils.JsonPathImpl;
+import utils.PropertiesFileImpl;
 
 import static io.restassured.RestAssured.given;
 

@@ -9,7 +9,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.testng.Assert;
 import pojo.UserPojo;
-import utilities.JsonPathImpl;
+import utils.JsonPathImpl;
 
 import java.util.List;
 import java.util.Map;
