@@ -2,6 +2,9 @@ package reports;
 
 import com.aventstack.extentreports.ExtentTest;
 
+/**
+ * ExtentReportManager class to implement Thread Safety for Extent Report Instances for parallel executions
+ */
 public class ExtentReportManager {
 
     private ExtentReportManager() {
@@ -20,5 +23,4 @@ public class ExtentReportManager {
     static void removeTest(ExtentTest testRef) {
         test.remove();
     }
-
 }
