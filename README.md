@@ -42,18 +42,35 @@ Rest Assured Automation Framework with **TestNG** and **Cucumber** integration, 
 5. Jenkinsfile -> for creating and pushing Image to Docker repository
 
 ## Instructions
-1. StudenAPITest -> requires a Docker Image to be running on local to hit the API Endpoints, check the [link](https://hub.docker.com/r/tejasn1/student-app) for instructions to setup
-2. Maven Command to Prepare Jars before running Dockerfile -> ***mvn clean package -DskipTests***
-3. Maven Command to Execute TestNG xml suite to run test -> ***mvn clean package test -DsuiteXmlFile=src/test/resources/xmls/$testSuite***; replace $testSuite with the xml name
-4. Maven Command to Execute TestNG xml suite to generate Maven Cucumber Report -> ***mvn test -DsuiteXmlFile=src/test/resources/xmls/$testSuite verify***; replace $testSuite with the xml name for Cucumber classes
-5. Terminal Command to check Allure Reports after Cucumber Tests -> ***allure serve allure-results***
-6. Docker Commands -> To Build Image: "***docker build -t {prefered image name}:latest .***" ex: "docker build -t rest-assured-apis:latest ."
-7. DockerCompose command -> ***docker-compose up*** to run the Build and get the tests results in local system as per the Volume Mapping
+### Building Docker Image
+1. Maven Command to Prepare Jars before running Dockerfile -> ***mvn clean package -DskipTests***
+2. To Build Docker Image, run command: "***docker build -t <preferredImageName:latest> .***" "docker build -t rest-assured-apis:latest ."
 
-## Common Troubleshoots For Local System
+### Setting Up Student API for Tests
+1. StudenAPITest -> requires Docker Image to be running on local to hit the API Endpoints
+2. Run command -> **docker pull tejasn1/student-app**
+3. Run command -> **docker run -p 8085:8080 -d tejasn1/student-app**
+4. Check the [link](https://hub.docker.com/r/tejasn1/student-app) for additional instructions to setup
+
+### Maven and Terminal Commands to Run Tests and Generate Reports
+1. Maven Command to Execute TestNG xml suite to run test -> ***mvn clean package test -DsuiteXmlFile=src/test/resources/xmls/$testSuite***; replace $testSuite with the xml name
+2. Maven Command to Execute TestNG xml suite to generate Maven Cucumber Report -> ***mvn test -DsuiteXmlFile=src/test/resources/xmls/$testSuite verify***; replace $testSuite with the xml name for Cucumber classes
+3. Terminal Command to check Allure Reports after Cucumber Tests -> ***allure serve allure-results***
+
+### Running Tests in Docker Setup
+1. DockerCompose command -> ***docker-compose up*** to run the Build and get the tests results in local system as per the Volume Mapping
+
+## Common Troubleshoot
+
+### Maven Tests
+1. **mvn test** - will throw error since the surefire plugin in POM expect TestNG XML file to be specified
+
+### Docker Setup
 1. Misses In Docker Compose file -> Check Volume Mappings as per the Local Environment
 2. Tests Not Running on Docker Compose file -> Check if any project related additional files like properties are not copied to Docker Image, any changes in Entrypoint needs to be cross checked in docker-compose file 
-3. Running Docker Image in Interactive Mode -> Comment out Entrypoint with #, use the command "docker run -it <the image name specified>", ex: "docker run -it rest-assured-apis" to verify if all dependent Jars and files are copied
+3. Running Docker Image in Interactive Mode -> Comment out Entrypoint with #, use the command "docker run -it <the image name specified>", ex: "docker run -it rest-assured-apis" to verify if all dependent Jars and files are copied 
+
+### Issues with API Endpoints
 4. Tests not hitting the Endpoints -> API endpoints for the Tests are hosted by 3rd parties, possibly they could have been shut down or have been changed, please check free APIs from [any-api](https://any-api.com/), [reqres](https://reqres.in/) to practice
 
 ## Special Thanks
