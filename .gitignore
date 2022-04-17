@@ -9,5 +9,6 @@ test-output/
 # Ignore Allure Results content
 allure-results
 
+target/
 
 
