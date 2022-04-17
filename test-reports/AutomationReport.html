@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">API Automation</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Apr 11, 2022 01:06:36 am</span></a>
+<a href="#"><span class="badge badge-primary">Apr 18, 2022 12:59:56 AM</span></a>
 </li>
 </ul>
 </div>
@@ -79,7 +79,7 @@
 <li class="dropdown">
 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-tag"></i></a>
 <ul id="tag-toggle" class="dropdown-menu dropdown-md p-v-0">
-<a class="dropdown-item" href="#"></a>
+<a class="dropdown-item" href="#">INTEGRATION</a><a class="dropdown-item" href="#">E2E</a><a class="dropdown-item" href="#">regression</a>
 </ul>
 </li>
 </ul>
@@ -87,12 +87,12 @@
       <ul class="test-list-item">
         <li class="test-item"  status="pass" test-id="1"
           author=""
-          tag=""
+          tag="E2E regression"
           device="">
           <div class="test-detail">
-            <p class="name">validateJSONParsing</p>
+            <p class="name">Validate adding of new Student using Pojo payload</p>
             <p class="text-sm">
-              <span>1:06:37 am</span> / <span>00:00:01:292</span>
+              <span>12:59:58 AM</span> / <span>00:00:03:933</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -100,16 +100,17 @@
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">validateJSONParsing</h5>
-<span class='badge badge-success'>04.11.2022 1:06:37 am</span>
-<span class='badge badge-danger'>04.11.2022 1:06:38 am</span>
-<span class='badge badge-default'>00:00:01:292</span>
+<h5 class="test-status text-pass">Validate adding of new Student using Pojo payload</h5>
+<span class='badge badge-success'>04.18.2022 12:59:58 AM</span>
+<span class='badge badge-danger'>04.18.2022 1:00:01 AM</span>
+<span class='badge badge-default'>00:00:03:933</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
 <span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
 </div>
-<div class="m-t-15"><span class="badge badge-pill badge-default"></span></div>
-<div class="m-t-10 m-l-5">Validate Json Parsing Scenarios</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">E2E</span>
+<span class="badge badge-pill badge-default">regression</span></div>
+<div class="m-t-10 m-l-5">createAStudentWithPojoPayload</div>
 </div>
 </div><div class="detail-body mt-4">
 <table class="table table-sm">
@@ -117,16 +118,422 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>1:06:38 am</td>
+        <td>12:59:58 AM</td>
         <td>
-          Error Cannot invoke "listeners.CustomAnnotations.testCaseType()" because the return value of "java.lang.reflect.Method.getAnnotation(java.lang.Class)" is null
+          createAStudentWithPojoPayload -> Execution starts
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:00:01 AM</td>
+        <td>
+          createAStudentWithPojoPayload -> Execution ended
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log pass-bg">Pass</span></td>
-        <td>1:06:38 am</td>
+        <td>1:00:01 AM</td>
         <td>
-          <span class='badge white-text green'><b>TEST CASE:- validateJSONParsing PASSED</b></span>
+          <span class='badge white-text green'><b>TEST CASE: - createAStudentWithPojoPayload PASSED</b></span>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="2"
+          author=""
+          tag="E2E regression"
+          device="">
+          <div class="test-detail">
+            <p class="name">Validate deletion of the Specified Student</p>
+            <p class="text-sm">
+              <span>1:00:01 AM</span> / <span>00:00:00:759</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Validate deletion of the Specified Student</h5>
+<span class='badge badge-success'>04.18.2022 1:00:01 AM</span>
+<span class='badge badge-danger'>04.18.2022 1:00:02 AM</span>
+<span class='badge badge-default'>00:00:00:759</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=2</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">E2E</span>
+<span class="badge badge-pill badge-default">regression</span></div>
+<div class="m-t-10 m-l-5">deleteSpecifiedStudent</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:00:01 AM</td>
+        <td>
+          deleteSpecifiedStudent -> Execution starts
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:00:02 AM</td>
+        <td>
+          deleteSpecifiedStudent -> Execution ended
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>1:00:02 AM</td>
+        <td>
+          <span class='badge white-text green'><b>TEST CASE: - deleteSpecifiedStudent PASSED</b></span>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="3"
+          author=""
+          tag="regression INTEGRATION"
+          device="">
+          <div class="test-detail">
+            <p class="name">Validate fetching of all the Students</p>
+            <p class="text-sm">
+              <span>1:00:02 AM</span> / <span>00:00:00:413</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Validate fetching of all the Students</h5>
+<span class='badge badge-success'>04.18.2022 1:00:02 AM</span>
+<span class='badge badge-danger'>04.18.2022 1:00:03 AM</span>
+<span class='badge badge-default'>00:00:00:413</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=3</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">regression</span>
+<span class="badge badge-pill badge-default">INTEGRATION</span></div>
+<div class="m-t-10 m-l-5">getAllStudent</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:00:02 AM</td>
+        <td>
+          getAllStudent -> Execution starts
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:00:03 AM</td>
+        <td>
+          getAllStudent -> Execution ended
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>1:00:03 AM</td>
+        <td>
+          <span class='badge white-text green'><b>TEST CASE: - getAllStudent PASSED</b></span>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="4"
+          author=""
+          tag="regression INTEGRATION"
+          device="">
+          <div class="test-detail">
+            <p class="name">Validate fetching of Student based on specified query parameters</p>
+            <p class="text-sm">
+              <span>1:00:03 AM</span> / <span>00:00:00:055</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Validate fetching of Student based on specified query parameters</h5>
+<span class='badge badge-success'>04.18.2022 1:00:03 AM</span>
+<span class='badge badge-danger'>04.18.2022 1:00:03 AM</span>
+<span class='badge badge-default'>00:00:00:055</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=4</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">regression</span>
+<span class="badge badge-pill badge-default">INTEGRATION</span></div>
+<div class="m-t-10 m-l-5">getFilteredStudents</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:00:03 AM</td>
+        <td>
+          getFilteredStudents -> Execution starts
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:00:03 AM</td>
+        <td>
+          getFilteredStudents -> Execution ended
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>1:00:03 AM</td>
+        <td>
+          <span class='badge white-text green'><b>TEST CASE: - getFilteredStudents PASSED</b></span>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="5"
+          author=""
+          tag="regression INTEGRATION"
+          device="">
+          <div class="test-detail">
+            <p class="name">Update details for the specified student</p>
+            <p class="text-sm">
+              <span>1:00:03 AM</span> / <span>00:00:00:122</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Update details for the specified student</h5>
+<span class='badge badge-success'>04.18.2022 1:00:03 AM</span>
+<span class='badge badge-danger'>04.18.2022 1:00:03 AM</span>
+<span class='badge badge-default'>00:00:00:122</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=5</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">regression</span>
+<span class="badge badge-pill badge-default">INTEGRATION</span></div>
+<div class="m-t-10 m-l-5">updateSpecifiedStudent</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:00:03 AM</td>
+        <td>
+          updateSpecifiedStudent -> Execution starts
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:00:03 AM</td>
+        <td>
+          updateSpecifiedStudent -> Execution ended
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>1:00:03 AM</td>
+        <td>
+          <span class='badge white-text green'><b>TEST CASE: - updateSpecifiedStudent PASSED</b></span>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="6"
+          author=""
+          tag="regression INTEGRATION"
+          device="">
+          <div class="test-detail">
+            <p class="name">Validate updation of Email ID for the specified student</p>
+            <p class="text-sm">
+              <span>1:00:03 AM</span> / <span>00:00:00:087</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Validate updation of Email ID for the specified student</h5>
+<span class='badge badge-success'>04.18.2022 1:00:03 AM</span>
+<span class='badge badge-danger'>04.18.2022 1:00:03 AM</span>
+<span class='badge badge-default'>00:00:00:087</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=6</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">regression</span>
+<span class="badge badge-pill badge-default">INTEGRATION</span></div>
+<div class="m-t-10 m-l-5">updateStudentEmailID</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:00:03 AM</td>
+        <td>
+          updateStudentEmailID -> Execution starts
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:00:03 AM</td>
+        <td>
+          updateStudentEmailID -> Execution ended
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>1:00:03 AM</td>
+        <td>
+          <span class='badge white-text green'><b>TEST CASE: - updateStudentEmailID PASSED</b></span>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="7"
+          author=""
+          tag="E2E regression"
+          device="">
+          <div class="test-detail">
+            <p class="name">Validate adding of new Student</p>
+            <p class="text-sm">
+              <span>1:00:03 AM</span> / <span>00:00:00:075</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Validate adding of new Student</h5>
+<span class='badge badge-success'>04.18.2022 1:00:03 AM</span>
+<span class='badge badge-danger'>04.18.2022 1:00:03 AM</span>
+<span class='badge badge-default'>00:00:00:075</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=7</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">E2E</span>
+<span class="badge badge-pill badge-default">regression</span></div>
+<div class="m-t-10 m-l-5">createAStudent</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:00:03 AM</td>
+        <td>
+          createAStudent -> Execution starts
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:00:03 AM</td>
+        <td>
+          createAStudent -> Execution ended
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>1:00:03 AM</td>
+        <td>
+          <span class='badge white-text green'><b>TEST CASE: - createAStudent PASSED</b></span>
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="8"
+          author=""
+          tag="regression INTEGRATION"
+          device="">
+          <div class="test-detail">
+            <p class="name">Validate fetching of Student based on the path parameters</p>
+            <p class="text-sm">
+              <span>1:00:03 AM</span> / <span>00:00:00:074</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">Validate fetching of Student based on the path parameters</h5>
+<span class='badge badge-success'>04.18.2022 1:00:03 AM</span>
+<span class='badge badge-danger'>04.18.2022 1:00:03 AM</span>
+<span class='badge badge-default'>00:00:00:074</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=8</span>
+<span class='badge badge-default pointer float-right ml-1 et'><i class="fa fa-chevron-down"></i></span>
+<span class='badge badge-default pointer float-right ct'><i class="fa fa-chevron-up"></i></span>
+</div>
+<div class="m-t-15"><span class="badge badge-pill badge-default">regression</span>
+<span class="badge badge-pill badge-default">INTEGRATION</span></div>
+<div class="m-t-10 m-l-5">getSpecifiedStudent</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:00:03 AM</td>
+        <td>
+          getSpecifiedStudent -> Execution starts
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>1:00:03 AM</td>
+        <td>
+          getSpecifiedStudent -> Execution ended
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>1:00:03 AM</td>
+        <td>
+          <span class='badge white-text green'><b>TEST CASE: - getSpecifiedStudent PASSED</b></span>
         </td>
       </tr>
   </tbody>
@@ -147,22 +554,22 @@
 <div class="test-list">
 <div class="test-list-tools">
 <ul class="tools pull-left"><li><a href=""><span class="font-size-14">Category</span></a></li></ul>
-<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">1</span></a></li></ul>
+<ul class="tools text-right"><li><a href="#"><span class="badge badge-primary">3</span></a></li></ul>
 </div>
 <div class="test-list-wrapper scrollable">
 <ul class="test-list-item">
 <li class="test-item">
 <div class="test-detail">
 <span class="meta">
-<span class='badge log pass-bg'>1</span>
+<span class='badge log pass-bg'>5</span>
 </span>
-<p class="name"></p>
-<p class="duration text-sm">1 tests</p>
+<p class="name">INTEGRATION</p>
+<p class="duration text-sm">5 tests</p>
 </div>
 <div class="test-contents d-none">
 <div class="info">
-<h4></h4>
-<span status="pass" class='badge log pass-bg'>1 passed</span>
+<h4>INTEGRATION</h4>
+<span status="pass" class='badge log pass-bg'>5 passed</span>
 </div>
 <table class='table table-sm mt-4'>
 <thead>
@@ -175,9 +582,166 @@
 <tbody>
 <tr class="tag-test-status" status="pass">
 <td><span class="badge log pass-bg">Pass</span></td>
-<td>01:06:37 am</td>
+<td>01:00:02 AM</td>
 <td>
-<a href="#" class="linked" test-id='1' id='1'>validateJSONParsing</a>
+<a href="#" class="linked" test-id='3' id='3'>Validate fetching of all the Students</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>01:00:03 AM</td>
+<td>
+<a href="#" class="linked" test-id='4' id='4'>Validate fetching of Student based on specified query parameters</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>01:00:03 AM</td>
+<td>
+<a href="#" class="linked" test-id='5' id='5'>Update details for the specified student</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>01:00:03 AM</td>
+<td>
+<a href="#" class="linked" test-id='6' id='6'>Validate updation of Email ID for the specified student</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>01:00:03 AM</td>
+<td>
+<a href="#" class="linked" test-id='8' id='8'>Validate fetching of Student based on the path parameters</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>3</span>
+</span>
+<p class="name">E2E</p>
+<p class="duration text-sm">3 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>E2E</h4>
+<span status="pass" class='badge log pass-bg'>3 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>00:59:58 AM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='1'>Validate adding of new Student using Pojo payload</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>01:00:01 AM</td>
+<td>
+<a href="#" class="linked" test-id='2' id='2'>Validate deletion of the Specified Student</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>01:00:03 AM</td>
+<td>
+<a href="#" class="linked" test-id='7' id='7'>Validate adding of new Student</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li class="test-item">
+<div class="test-detail">
+<span class="meta">
+<span class='badge log pass-bg'>8</span>
+</span>
+<p class="name">regression</p>
+<p class="duration text-sm">8 tests</p>
+</div>
+<div class="test-contents d-none">
+<div class="info">
+<h4>regression</h4>
+<span status="pass" class='badge log pass-bg'>8 passed</span>
+</div>
+<table class='table table-sm mt-4'>
+<thead>
+<tr>
+<th class="status-col">Status</th>
+<th class="timestamp-col">Timestamp</th>
+<th>TestName</th>
+</tr>
+</thead>
+<tbody>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>00:59:58 AM</td>
+<td>
+<a href="#" class="linked" test-id='1' id='1'>Validate adding of new Student using Pojo payload</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>01:00:01 AM</td>
+<td>
+<a href="#" class="linked" test-id='2' id='2'>Validate deletion of the Specified Student</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>01:00:02 AM</td>
+<td>
+<a href="#" class="linked" test-id='3' id='3'>Validate fetching of all the Students</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>01:00:03 AM</td>
+<td>
+<a href="#" class="linked" test-id='4' id='4'>Validate fetching of Student based on specified query parameters</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>01:00:03 AM</td>
+<td>
+<a href="#" class="linked" test-id='5' id='5'>Update details for the specified student</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>01:00:03 AM</td>
+<td>
+<a href="#" class="linked" test-id='6' id='6'>Validate updation of Email ID for the specified student</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>01:00:03 AM</td>
+<td>
+<a href="#" class="linked" test-id='7' id='7'>Validate adding of new Student</a>
+</td>
+</tr>
+<tr class="tag-test-status" status="pass">
+<td><span class="badge log pass-bg">Pass</span></td>
+<td>01:00:03 AM</td>
+<td>
+<a href="#" class="linked" test-id='8' id='8'>Validate fetching of Student based on the path parameters</a>
 </td>
 </tr>
 </tbody>
@@ -197,19 +761,19 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Apr 11, 2022 01:06:36 am</h3>
+<h3>Apr 18, 2022 12:59:56 AM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Apr 11, 2022 01:06:38 am</h3>
+<h3>Apr 18, 2022 01:00:03 AM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-pass">Tests Passed</p>
-<h3>1</h3>
+<h3>8</h3>
 </div></div>
 </div>
 <div class="col-md-3">
@@ -232,7 +796,7 @@
 </div>
 <div class="card-footer">
 <div><small data-tooltip='100%'>
-<b>1</b> tests passed
+<b>8</b> tests passed
 </small>
 </div>
 <div>
@@ -254,10 +818,10 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='50%'><b>1</b> events passed</small></div>
+<div><small data-tooltip='33%'><b>8</b> events passed</small></div>
 <div>
 <small data-tooltip='0%'><b>0</b> events failed,
-<b data-tooltip='%'>1</b> others
+<b data-tooltip='%'>16</b> others
 </small>
 </div>
 </div>
@@ -273,7 +837,7 @@
 </div></div>
 <script>
 var timeline = {
-"validateJSONParsing":1.292
+"Validate adding of new Student using Pojo payload":3.933,"Validate deletion of the Specified Student":0.759,"Validate fetching of all the Students":0.413,"Validate fetching of Student based on specified query parameters":0.055,"Update details for the specified student":0.122,"Validate updation of Email ID for the specified student":0.087,"Validate adding of new Student":0.075,"Validate fetching of Student based on the path parameters":0.074
 };
 </script>
 <div class="row">
@@ -283,12 +847,50 @@ var timeline = {
 <div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
 <thead><tr class="bg-gray"><th>Name</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Others</th><th>Passed %</th></tr></thead><tbody>
 <tr>
-<td></td>
-<td>1</td>
+<td>INTEGRATION</td>
+<td>5</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
+</tr>
+<tr>
+<td>E2E</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>regression</td>
+<td>8</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<div class="col-lg-6 col-md-12 sysenv-container">
+<div class="card">
+<div class="card-header"><p>System/Environment</p></div>
+<div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
+<thead><tr class="bg-gray"><th>Name</th><th>Value</th></tr></thead>
+<tbody>
+<tr>
+<td>OS</td>
+<td>Mac OS X</td>
+</tr>
+<tr>
+<td>OS Version</td>
+<td>10.16</td>
+</tr>
+<tr>
+<td>Java Version</td>
+<td>11.0.7+8-LTS</td>
 </tr>
 </tbody>
 </table></div>
@@ -299,7 +901,7 @@ var timeline = {
 <script>
 var statusGroup = {
 parentCount: 5,
-passParent: 1,
+passParent: 8,
 failParent: 0,
 warningParent: 0,
 skipParent: 0,
@@ -316,11 +918,11 @@ warningGrandChild: 0,
 skipGrandChild: 0,
 infoGrandChild: 0,
 eventsCount: 5,
-passEvents: 1,
+passEvents: 8,
 failEvents: 0,
 warningEvents: 0,
 skipEvents: 0,
-infoEvents: 1
+infoEvents: 16
 };
 </script>        </div>
       </div>
