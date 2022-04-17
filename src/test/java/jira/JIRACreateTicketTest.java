@@ -1,6 +1,8 @@
 package jira;
 
+import annotations.CustomFrameworkAnnotations;
 import com.github.javafaker.Faker;
+import enums.TestCaseType;
 import io.restassured.RestAssured;
 import io.restassured.http.Cookie;
 import org.testng.annotations.Test;
@@ -28,6 +30,7 @@ public class JIRACreateTicketTest {
             "}";
 
     //ToDo - Below code only for reference, working as expected from POSTMAN but not while using RestAssured
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION)
     @Test(testName = "Validate creating JIRA Ticket")
     public void createJIRATicket() {
 
@@ -41,6 +44,7 @@ public class JIRACreateTicketTest {
     }
 
     //ToDo - Below code only for reference, working as expected from POSTMAN but not while using RestAssured
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION)
     @Test(testName = "Validate getting the specified JIRA Ticket")
     public void getJIRATicket() {
 

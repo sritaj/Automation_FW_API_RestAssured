@@ -1,7 +1,9 @@
 package examples;
 
+import annotations.CustomFrameworkAnnotations;
 import com.github.javafaker.Faker;
 import constants.FrameworkConstants;
+import enums.TestCaseType;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeTest;
@@ -61,6 +63,7 @@ public class DynamicJsonTest {
         spec = given().log().all().header("Content-Type", "application/json");
     }
 
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION)
     @Test(testName = "Validate Adding of New Book")
     public void addBookUseCase1() {
         String response = spec
@@ -72,6 +75,7 @@ public class DynamicJsonTest {
 
     }
 
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION)
     @Test(testName = "Validate Adding of New Book using TestNG Data Provider", dataProvider = "booksData")
     public void addBookUseCase2(String bookName, String isbn, String aisle, String authorName) {
         String response = spec
@@ -83,6 +87,7 @@ public class DynamicJsonTest {
 
     }
 
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION)
     @Test(testName = "Validate Adding of New Book via reading from JSON file")
     @Ignore
     public void addBookUseCase3() throws IOException {

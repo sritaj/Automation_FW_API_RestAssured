@@ -1,5 +1,7 @@
 package jira;
 
+import annotations.CustomFrameworkAnnotations;
+import enums.TestCaseType;
 import io.restassured.RestAssured;
 import io.restassured.filter.session.SessionFilter;
 import io.restassured.response.Response;
@@ -13,6 +15,7 @@ public class JIRAGetSessionCookieTest {
     String creds = "{ \"username\": \"sritajpatel\", \"password\": \"sritajpatel\" }";
 
     //ToDo - Below code only for reference, working as expected from POSTMAN but not while using RestAssured
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION)
     @Test(testName = "Validate getting Session Cookie from JIRA")
     public void getJIRASessionCookie() {
 

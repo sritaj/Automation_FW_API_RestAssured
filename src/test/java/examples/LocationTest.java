@@ -1,5 +1,7 @@
 package examples;
 
+import annotations.CustomFrameworkAnnotations;
+import enums.TestCaseType;
 import io.restassured.RestAssured;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -10,6 +12,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class LocationTest {
 
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION)
     @Test(testName = "Validate Location APIs")
     public void validateLocationAPIs(){
         String place = "{\n" +

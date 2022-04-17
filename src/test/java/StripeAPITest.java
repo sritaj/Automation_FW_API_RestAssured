@@ -1,5 +1,7 @@
+import annotations.CustomFrameworkAnnotations;
 import com.github.javafaker.Faker;
 import enums.SparksSpecs;
+import enums.TestCaseType;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -32,6 +34,7 @@ public class StripeAPITest {
         specs = given().auth().basic(PropertiesFileImpl.getDataFromPropertyFile(SparksSpecs.STRIPESECRETKEY), "");
     }
 
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.FUNCTIONAL)
     @Ignore
     @Test(testName = "Validate customer list when no customers are present")
     public void getCustomerListWhenCustomersAreNotCreated() {
@@ -47,6 +50,7 @@ public class StripeAPITest {
         Assert.assertEquals(datasize, 0);
     }
 
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION)
     @Test(testName = "Validate creation of Customer without any body/inputs", priority = 0)
     public void createCustomerWithoutAnyBody() {
         response = specs.contentType(ContentType.ANY)
@@ -59,6 +63,7 @@ public class StripeAPITest {
         Assert.assertNotNull(id);
     }
 
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION)
     @Test(testName = "Validate creation of Customer with Form parameters", priority = 1)
     public void createCustomersWithFormParameters() {
         Faker fs = new Faker();
@@ -78,6 +83,7 @@ public class StripeAPITest {
         Assert.assertEquals(actualEmailID, email);
     }
 
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION)
     @Test(testName = "Validate creation of Customer without authentication", priority = 3)
     public void createCustomerWithoutAuthentication() {
         response = given()
@@ -93,6 +99,7 @@ public class StripeAPITest {
         Assert.assertEquals(errorType, errorMessageTypeForMissingAPIKey);
     }
 
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION)
     @Test(testName = "Validate customer list", priority = 4)
     public void getCustomerList() {
 
@@ -107,6 +114,7 @@ public class StripeAPITest {
 
     }
 
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.E2E)
     @Test(testName = "Validate fetching of Customer based on ID", dependsOnMethods = {"createCustomersWithFormParameters"}, priority = 5)
     public void getCustomerBasedOnID() {
 

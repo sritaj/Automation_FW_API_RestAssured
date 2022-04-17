@@ -1,4 +1,6 @@
+import annotations.CustomFrameworkAnnotations;
 import base.BaseTest;
+import enums.TestCaseType;
 import io.restassured.parsing.Parser;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -8,6 +10,7 @@ import static io.restassured.RestAssured.given;
 
 public class OAuthTest extends BaseTest {
 
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION)
     @Test(testName = "Validate authentication error when there is no access token")
     public void validateAuthenticationError() {
 
@@ -22,6 +25,7 @@ public class OAuthTest extends BaseTest {
     }
 
     //ToDo - The below code is not working and is only meant for reference
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.E2E)
     @Test(testName = "Validate getting of Authorization code and Access token to fetch the course list")
     public void validateAuthorizationAndAccessTokenToFetchDetails() {
 

@@ -1,6 +1,8 @@
+import annotations.CustomFrameworkAnnotations;
 import base.BaseTest;
 import dto.UserData;
 import enums.ReqResSpecs;
+import enums.TestCaseType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.testng.Assert;
@@ -31,6 +33,7 @@ public class ReqAPITest extends BaseTest {
 
     }
 
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION)
     @Test(testName = "Validate getting list of users based on Query params")
     public void getListOfUsers() {
         response = given(specs).queryParam("page", "2")
@@ -45,6 +48,7 @@ public class ReqAPITest extends BaseTest {
 
     }
 
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION)
     @Test(testName = "Validate creation of user")
     public void createAnUser() {
         udata = new UserData();

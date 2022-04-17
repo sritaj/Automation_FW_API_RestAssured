@@ -1,6 +1,8 @@
 package examples;
 
+import annotations.CustomFrameworkAnnotations;
 import base.BaseTest;
+import enums.TestCaseType;
 import io.restassured.path.json.JsonPath;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -10,6 +12,7 @@ import java.util.List;
 
 public class ComplexJsonParseTest extends BaseTest {
 
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.FUNCTIONAL)
     @Test(testName = "Validate Json Parsing Scenarios")
     public void validateJSONParsing(){
 

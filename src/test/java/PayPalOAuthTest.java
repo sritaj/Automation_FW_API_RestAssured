@@ -1,6 +1,8 @@
+import annotations.CustomFrameworkAnnotations;
 import base.BaseTest;
 import dto.PayPalProductData;
 import enums.PayPalSpecs;
+import enums.TestCaseType;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -35,6 +37,7 @@ public class PayPalOAuthTest extends BaseTest {
         pdata = new PayPalProductData();
     }
 
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.INTEGRATION)
     @Test(testName = "Validate retrieval of Access Token")
     public void getAccessToken() {
         response = specsForAuth.post("/v1/oauth2/token").then().extract().response();
@@ -45,6 +48,7 @@ public class PayPalOAuthTest extends BaseTest {
         Assert.assertEquals(response.getStatusCode(), 200);
     }
 
+    @CustomFrameworkAnnotations(testCaseType = TestCaseType.E2E)
     @Test(testName = "Validate creation of product", dependsOnMethods = "getAccessToken")
     public void createProduct() {
         ppojo = pdata.createPayPalProduct();
