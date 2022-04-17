@@ -125,7 +125,6 @@ public final class ExtentReportImpl {
     public static void addDetails(Method method) {
         ExtentReportManager.getTest()
                 .assignCategory(method.getAnnotation(Test.class).groups())
-                .assignCategory(method.getAnnotation(CustomFrameworkAnnotations.class).testCaseModule())
                 .assignCategory(String.valueOf(method.getAnnotation(CustomFrameworkAnnotations.class).testCaseType()));
     }
 }
