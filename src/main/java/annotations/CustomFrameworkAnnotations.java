@@ -15,7 +15,5 @@ import java.lang.annotation.Target;
 public @interface CustomFrameworkAnnotations {
 
     TestCaseType testCaseType();
-
-    String[] testCaseModule() default "";
 }
 
