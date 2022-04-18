@@ -25,7 +25,7 @@ public class ReqAPITest extends BaseTest {
 
     final String logFileName = "ReqAPITests";
 
-    @BeforeTest
+    @BeforeTest(alwaysRun = true)
     public void initialiseSetup() {
         ReqSpecsImpl reqSpecs = new ReqSpecsImpl();
         specs = reqSpecs.setRequestSpecs(PropertiesFileImpl.getDataFromPropertyFile(ReqResSpecs.REQRESURI),

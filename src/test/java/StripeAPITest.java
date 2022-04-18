@@ -27,7 +27,7 @@ public class StripeAPITest {
     final String errorMessageForMissingAPIKey = "You did not provide an API key. You need to provide your API key in the Authorization header, using Bearer auth (e.g. 'Authorization: Bearer YOUR_SECRET_KEY'). See https://stripe.com/docs/api#authentication for details, or we can help at https://support.stripe.com/.";
     final String errorMessageTypeForMissingAPIKey = "invalid_request_error";
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setup() {
         RestAssured.baseURI = PropertiesFileImpl.getDataFromPropertyFile(SparksSpecs.STRIPEBASEURI);
         RestAssured.basePath = PropertiesFileImpl.getDataFromPropertyFile(SparksSpecs.STRIPEBASEPATH);

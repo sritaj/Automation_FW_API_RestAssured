@@ -30,7 +30,7 @@ public class PayPalOAuthTest extends BaseTest {
     final String paypalIDKey = "PayPal-Request-Id";
     final String paypalIDValue = "PRODUCT-18062020-001";
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void setup() {
         RestAssured.baseURI = PropertiesFileImpl.getDataFromPropertyFile(PayPalSpecs.PAYPALOAUTHURI);
         specsForAuth = given().param("grant_type", "client_credentials").auth().preemptive().basic(username, password);
