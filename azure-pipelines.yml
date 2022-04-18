@@ -5,10 +5,10 @@
 
 parameters:
   - name : TestXMLs
-    default: sample.xml
+    default: smoke.xml
     values:
-      - testNG.xml
-      - sample.xml
+      - studentTest.xml
+      - smoke.xml
 
 trigger:
 - master
@@ -30,7 +30,7 @@ steps:
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: clean package test -DsuiteXmlFile=src/test/resources/xmls/${{parameters.TestXMLs}}
+    goals: clean package test -DsuiteXmlFile=xml-suites/${{parameters.TestXMLs}}
 
 - task: Docker@2
   inputs:
