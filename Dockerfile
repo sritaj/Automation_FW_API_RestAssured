@@ -10,10 +10,12 @@ ADD target/rest-assured-apis-tests.jar         rest-assured-apis-tests.jar
 ADD target/libs                                libs
 
 #ADD XML SUITE files
-ADD src/test/resources/xmls/*                   /usr/share/tag/
+ADD xml-suites/*                   /usr/share/tag/
 
 #copy if any other dependencies are there like test-data files, properties files
 ADD src/test/resources/properties/config.properties     src/test/resources/properties/config.properties
 ADD src/test/resources/jsonfiles/librarybook.json       src/test/resources/properties/librarybook.json
+ADD src/test/resources/cucumber.properties              src/test/resources/cucumber.properties
 
-ENTRYPOINT java -cp rest-assured-apis.jar:rest-assured-apis-tests.jar:libs/* org.testng.TestNG $MODULE
+#Entrypoint to run TestNG files on docker-compose
+ENTRYPOINT java -cp rest-assured-apis.jar:rest-assured-apis-tests.jar:libs/* org.testng.TestNG $TESTSUITE
