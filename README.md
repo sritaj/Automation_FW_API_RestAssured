@@ -38,9 +38,14 @@ Rest Assured Automation Framework with **TestNG** and **Cucumber** integration, 
 
 ## Not Included/Yet to be Done
 1. Parallel Execution Examples for Cucumber Tests
-3. Excel Read/Write
-4. Email APIs to send Reports
-5. Jenkinsfile -> for creating and pushing Image to Docker repository
+2. Excel Read/Write
+3. Email APIs to send Reports
+4. Jenkinsfile -> for creating and pushing Image to Docker repository
+
+## Known Caveats
+1. **mvn test** command won't work due to surefire plugin which requires testNG xml suite to be selected, will throw this error ***Execution default-test of goal org.apache.maven.plugins:maven-surefire-plugin:2.22.2:test failed: testSuiteXmlFiles0 has null value***
+2. Maven commands to run Cucumber classes like **mvn test –DCucumber.options="Your Options"** won't run due to beforementioned issue
+3. Test Failures on parallel mode(Thread safety and code optimization for parallel execution is not done)
 
 ## Instructions
 ### Building Docker Image
@@ -53,10 +58,30 @@ Rest Assured Automation Framework with **TestNG** and **Cucumber** integration, 
 3. Run command -> **docker run -p 8085:8080 -d tejasn1/student-app**
 4. Check the [link](https://hub.docker.com/r/tejasn1/student-app) for additional instructions to setup
 
-### Maven and Terminal Commands to Run Tests and Generate Reports
-1. Maven Command to Execute TestNG xml suite to run test -> ***mvn clean package test -DsuiteXmlFile=xml-suites/$TESTSUITE***; replace $TESTSUITE with the xml name
-2. Maven Command to Execute TestNG xml suite to generate Maven Cucumber Report -> ***mvn test -DsuiteXmlFile=xml-suites/$TESTSUITE***; replace $TESTSUITE with the xml name for Cucumber classes
-3. Terminal Command to check Allure Reports after Cucumber Tests -> ***allure serve allure-results***
+### Maven Commands to Run Tests 
+1. Maven Command to Execute TestNG xml suite to run TestNG Tests -> ***mvn clean package test -DsuiteXmlFile=xml-suites/$TESTSUITE***; replace $TESTSUITE with the xml name
+2. Maven Command to Execute TestNG xml suite to run Cucumber classes -> ***mvn test -DsuiteXmlFile=xml-suites/$TESTSUITE***; replace $TESTSUITE with the xml name for Cucumber classes
+3. Maven Command to generate jars for Docker image -> ***mvn clean package -DskipTests*** 
+
+### Generate Reports
+1. Maven Cucumber HTML Report
+   * Run Maven Command - ***mvn test -DsuiteXmlFile=xml-suites/$TESTSUITE verify***; replace $TESTSUITE with the TestNG xml containing Cucumber classes
+   * The POM Plugin defines the report generation phase as ***verify*** hence verify is appended to above step, this phase can be changed to test,compile etc
+   * The Report by default will be generated under target/cucumber-html-reports
+   * Only available through Maven Run
+2. Allure Reports for Cucumber
+   * Run Maven Command - ***mvn test -DsuiteXmlFile=xml-suites/$TESTSUITE ***; replace $TESTSUITE with the TestNG xml containing Cucumber classes
+   * Run Command In Terminal to check Allure Reports post Cucumber Tests -> ***allure serve allure-results***
+   * Also available when Runner class is selected and test is Run
+3. Cucumber Report
+   * Run Maven Command - ***mvn test -DsuiteXmlFile=xml-suites/$TESTSUITE ***; replace $TESTSUITE with the TestNG xml containing Cucumber classes
+   * Post run the URL will be visible in the Terminal along with the URL
+   * The Report by default will be generated under target/JsonReports/cucumber.html; the path is specified in pom and cucumberrunner class
+   * Also, available when Runner class is selected and test is Run
+4. Extent Reports for TestNG Runs
+   * Run Maven Command - ***mvn test -DsuiteXmlFile=xml-suites/$TESTSUITE ***; replace $TESTSUITE with the TestNG xml containing TestNG Tests
+   * Post Run the report will be generated under test-reports, configurable via properties and Extent Report implementation
+   * Also, available when Tests are selected and run, individually or class level
 
 ### Running Tests in Docker Setup
 1. DockerCompose command -> ***docker-compose up*** to run the Container and automatically execute the Tests(as specified in the Entrypoint) for the specified Image(in this case the image built using Dockerfile which is present locally) 
