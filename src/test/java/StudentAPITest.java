@@ -35,7 +35,7 @@ public class StudentAPITest extends BaseTest {
     StudentData studentData;
     StudentPojo stdData;
 
-    @BeforeClass
+    @BeforeClass(alwaysRun = true)
     public void init() {
         studentData = new StudentData();
         RestAssured.baseURI = PropertiesFileImpl.getDataFromPropertyFile(StudentSpecs.STUDENTBASEURI);
