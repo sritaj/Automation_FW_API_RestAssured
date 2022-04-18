@@ -7,3 +7,4 @@ services:
       - TESTSUITE=${TESTSUITE}
     volumes:
       - /Users/sritaj/TechnicalKnowHow/Assesment/testResults:/usr/share/tag/test-output
+      - /Users/sritaj/TechnicalKnowHow/Assesment/testResults:/usr/share/tag/test-reports/
