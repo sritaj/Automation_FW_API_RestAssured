@@ -10,10 +10,21 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 
+/**
+ * ReqSpecsImpl class to define wrapper methods for building Request Specification
+ */
 public class ReqSpecsImpl {
 
     RequestSpecification specs;
 
+    /**
+     * Method to create the Request Specification
+     *
+     * @param baseURI - Base URI for the RestAPI
+     * @param basePath - Base Path for the RestAPI Endpoints
+     * @param logFile - logfile path to write the Request and Response
+     * @return RequestSpecification - Request specification body
+     */
     public RequestSpecification setRequestSpecs(String baseURI, String basePath, String logFile) {
         PrintStream log = null;
         try {

@@ -5,6 +5,9 @@ import lombok.Setter;
 
 import java.util.List;
 
+/**
+ * StudentPojo class to create Pojo payload for Student
+ */
 @Getter
 @Setter
 public class StudentPojo {

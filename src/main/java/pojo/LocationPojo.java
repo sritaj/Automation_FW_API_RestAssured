@@ -2,10 +2,12 @@ package pojo;
 
 import lombok.Getter;
 import lombok.Setter;
-import models.Location;
 
 import java.util.List;
 
+/**
+ * LocationPojo class to create Pojo payload for Location
+ */
 @Getter
 @Setter
 public class LocationPojo {
@@ -20,4 +22,12 @@ public class LocationPojo {
     private List<String> types;
 
 
+}
+
+@Setter
+@Getter
+class Location {
+
+    private Double latitude;
+    private Double longitude;
 }

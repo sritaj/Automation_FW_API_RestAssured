@@ -3,6 +3,9 @@ package pojo;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * PayPalProductPojo class to create Pojo payload for PayPal
+ */
 @Getter
 @Setter
 public class PayPalProductPojo {

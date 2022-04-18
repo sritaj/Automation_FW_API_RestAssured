@@ -6,6 +6,9 @@ import pojo.StudentPojo;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * UserData class to create/update data for Student
+ */
 public class StudentData {
 
     private StudentPojo stdPojo;
@@ -20,6 +23,11 @@ public class StudentData {
         return new ArrayList<>(Arrays.asList("C++", "Java", "JavaScript"));
     }
 
+    /**
+     * Method to create Student
+     *
+     * @return StudentPojo - Returns Object of Student type
+     */
     public StudentPojo createStudentData(){
         stdPojo.setFirstName(fs.name().firstName());
         stdPojo.setLastName(fs.name().lastName());
@@ -29,6 +37,11 @@ public class StudentData {
         return stdPojo;
     }
 
+    /**
+     * Method to update Student
+     *
+     * @return StudentPojo - Returns Object of Student type
+     */
     public StudentPojo updateStudentData(){
         stdPojo.setFirstName(fs.name().firstName());
         stdPojo.setLastName(fs.name().lastName());
@@ -37,6 +50,11 @@ public class StudentData {
         return stdPojo;
     }
 
+    /**
+     * Method to update Student email address
+     *
+     * @return StudentPojo - Returns Object of Student type
+     */
     public StudentPojo updateEmailAddress(){
         stdPojo.setEmail(fs.name().firstName() + "@gmail.com");
         return stdPojo;
